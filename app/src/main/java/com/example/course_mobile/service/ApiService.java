@@ -1,18 +1,14 @@
 package com.example.course_mobile.service;
 
-import com.example.course_mobile.model.user.DetailUser;
 import com.example.course_mobile.model.user.User;
-import com.example.course_mobile.model.user.UserLogin;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface ApiService {
@@ -36,6 +32,6 @@ public interface ApiService {
 //    Call<CourseList> listCourse();
     @FormUrlEncoded
     @POST("login/")
-    Call<DetailUser> user(@Field("username") String userName, @Field("password") String passWord);
+    Call<User> user(@Field("username") String userName, @Field("password") String passWord);
 }
 

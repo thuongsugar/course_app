@@ -5,16 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
-
-import com.example.course_mobile.model.user.DetailUser;
-import com.example.course_mobile.model.user.User;
-import com.example.course_mobile.model.user.UserLogin;
-import com.example.course_mobile.service.ApiService;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
