@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/btnCourse"
+        android:title="@string/bottom_course"
+        android:icon="@drawable/icon_course"
+        />
+    <item
+        android:id="@+id/btnProfile"
+        android:title="@string/bottom_profile"
+        android:icon="@drawable/icon_profile"
+        />
+    <item
+        android:id="@+id/btnSetting"
+        android:title="@string/bottom_setting"
+        android:icon="@drawable/icon_setting"
+        />
+</menu>

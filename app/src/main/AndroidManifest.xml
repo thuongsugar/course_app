@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.course_mobile">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".data_local.CourseApplication"
         android:allowBackup="true"
@@ -12,6 +14,9 @@
         android:theme="@style/Theme.CourseMobile">
         <activity
             android:name=".MainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
