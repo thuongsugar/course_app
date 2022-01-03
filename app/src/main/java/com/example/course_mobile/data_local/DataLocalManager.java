@@ -2,8 +2,12 @@ package com.example.course_mobile.data_local;
 
 import android.content.Context;
 
+import com.example.course_mobile.model.user.User;
+import com.google.gson.Gson;
+
 public class DataLocalManager {
     private static final String FIRST_INSTALLED = "FIRST_INSTALLED";
+    private static final String USER_DATA = "USER_DATA";
     private static DataLocalManager instance;
     private CourseSharedPreferences courseSharedPreferences;
 
@@ -22,5 +26,10 @@ public class DataLocalManager {
     }
     public static boolean getFirstInstalled(){
         return  DataLocalManager.getInstance().courseSharedPreferences.getBooleanValue(FIRST_INSTALLED);
+    }
+    public static void setUser(User user){
+        Gson gson = new Gson();
+        String userStringJson = gson.toJson(user);
+        DataLocalManager.getInstance().courseSharedPreferences.putStringValue(USER_DATA,userStringJson);
     }
 }

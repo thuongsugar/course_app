@@ -1,9 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.LoginActivity">
+    android:orientation="vertical"
+    android:gravity="center"
+    >
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ProgressBar
+                android:id="@+id/pgBarLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:indeterminateTint="@color/primary"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imvLogin"
+                android:layout_width="303dp"
+                android:layout_height="213dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/login"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtLogin"
+                android:layout_width="341dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:gravity="center"
+                android:text="Log in"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imvLogin"
+                />
+
+            <EditText
+                android:id="@+id/edtUserName"
+                android:layout_width="343dp"
+                android:layout_height="53dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:paddingLeft="16dp"
+                android:hint="Username"
+                android:textSize="14sp"
+                android:inputType="text"
+                android:background="@drawable/border_edit_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtLogin"
+                android:textColor="@android:color/darker_gray"/>
+
+            <EditText
+                android:id="@+id/edtPassword"
+                android:layout_width="343dp"
+                android:layout_height="53dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/border_edit_text"
+                android:hint="Password"
+                android:paddingLeft="16dp"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="14sp"
+                android:inputType="textPassword"
+                app:layout_constraintEnd_toEndOf="@+id/edtUserName"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/edtUserName"
+                app:layout_constraintTop_toBottomOf="@+id/edtUserName" />
+
+            <Button
+                android:id="@+id/btnLogin"
+                android:layout_width="343dp"
+                android:layout_height="56dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="48dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/my_button"
+                android:text="Log in"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtPassword" />
+
+            <ImageView
+                android:id="@+id/imvHiddenPass"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="16dp"
+
+                android:src="@drawable/hiden_password"
+                app:layout_constraintBottom_toBottomOf="@+id/edtPassword"
+                app:layout_constraintEnd_toEndOf="@+id/edtPassword"
+                app:layout_constraintTop_toTopOf="@+id/edtPassword" />
+            <ImageView
+                android:id="@+id/imvShowPass"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="16dp"
+                android:visibility="gone"
+                android:src="@drawable/show_password"
+                app:layout_constraintBottom_toBottomOf="@+id/edtPassword"
+                app:layout_constraintEnd_toEndOf="@+id/edtPassword"
+                app:layout_constraintTop_toTopOf="@+id/edtPassword" />
+            <TextView
+                android:id="@+id/tvSignUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Sign up"
+                android:textFontWeight="500"
+                android:textColor="@color/gray"
+                android:textSize="14dp"
+                app:layout_constraintEnd_toEndOf="@+id/btnLogin"
+                app:layout_constraintStart_toStartOf="@+id/btnLogin"
+                app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

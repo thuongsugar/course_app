@@ -18,6 +18,7 @@ public class User {
         this.image = image;
     }
 
+
     public String getAuth_token() {
         return auth_token;
     }
