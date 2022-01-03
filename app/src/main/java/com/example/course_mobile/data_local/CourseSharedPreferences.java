@@ -10,6 +10,7 @@ public class CourseSharedPreferences {
     public CourseSharedPreferences(Context context) {
         this.context = context;
     }
+
     public void putBooleValue(String key,Boolean value){
         SharedPreferences sharedPreferences = context.getSharedPreferences(MY_SHARE_PREFERENCES,
                 Context.MODE_PRIVATE);
@@ -17,9 +18,22 @@ public class CourseSharedPreferences {
         editor.putBoolean(key,value);
         editor.apply();
     }
+
     public boolean getBooleanValue(String key){
         SharedPreferences sharedPreferences = context.getSharedPreferences(MY_SHARE_PREFERENCES,
                 Context.MODE_PRIVATE);
         return sharedPreferences.getBoolean(key,false);
+    }
+
+    public void putStringValue(String key,String value){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(MY_SHARE_PREFERENCES,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(key,value);
+        editor.apply();
+    }
+    public String getStringValue(String key){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(MY_SHARE_PREFERENCES,Context.MODE_PRIVATE);
+        return sharedPreferences.getString(key,"");
+
     }
 }
