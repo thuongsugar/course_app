@@ -1,0 +1,36 @@
+[33mcommit dab4e0d8ca2dd0b22992579d7891e07bf4c53447[m[33m ([m[1;36mHEAD -> [m[1;32mtest_question[m[33m, [m[1;31morigin/test_question[m[33m)[m
+Author: phonghoanggg <hoangnghiaphong_t64@hus.edu.vn>
+Date:   Sat Jan 1 23:57:26 2022 +0700
+
+    'test_question'
+
+[33mcommit 688121acbbe248a6e307972de71df6ec5d9169f2[m
+Merge: 7dcef03 6ef33a7
+Author: XuanThuong01 <phamxuanthuong2301@gmail.com>
+Date:   Sat Jan 1 10:09:54 2022 +0700
+
+    handle conflict
+
+[33mcommit 7dcef03a9564a40759ab0458ecc9833d3eaa9b9f[m
+Author: XuanThuong01 <phamxuanthuong2301@gmail.com>
+Date:   Sat Jan 1 10:06:00 2022 +0700
+
+    add package manager
+
+[33mcommit 6ef33a7e81befe0cb5c94cb4cba99a42e65705b6[m
+Author: duong van quang <duongvanquang_t64@hus.edu.vn>
+Date:   Sat Jan 1 09:29:44 2022 +0700
+
+    add 4 anh cuoi nha
+
+[33mcommit 7206ceccec682b6688341020c7fac8f2edd21f59[m
+Author: duong van quang <duongvanquang_t64@hus.edu.vn>
+Date:   Fri Dec 31 23:53:45 2021 +0700
+
+    signu pand login
+
+[33mcommit 1466e38b1d85ecf8ca4f0204443c9182b660d865[m
+Author: XuanThuong01 <phamxuanthuong2301@gmail.com>
+Date:   Fri Dec 31 10:46:18 2021 +0700
+
+    create app
