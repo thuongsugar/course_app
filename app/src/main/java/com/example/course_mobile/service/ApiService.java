@@ -4,9 +4,12 @@ import com.example.course_mobile.model.user.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
@@ -18,7 +21,7 @@ public interface ApiService {
             .create();
 
     ApiService apiService = new Retrofit.Builder()
-            .baseUrl("https://cb63-2402-800-61b3-836d-3cd9-e096-11f4-611d.ngrok.io/api/")
+            .baseUrl("http://10.0.3.2:8000/api/")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(ApiService.class);
@@ -30,6 +33,10 @@ public interface ApiService {
 //
 //    @GET("courses")
 //    Call<CourseList> listCourse();
+    @FormUrlEncoded
+    @POST("user/")
+    Call<ResponseBody> userRegister(@Field("username") String userName, @Field("email") String email, @Field("password") String passWord);
+
     @FormUrlEncoded
     @POST("login/")
     Call<User> user(@Field("username") String userName, @Field("password") String passWord);
