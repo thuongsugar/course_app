@@ -11,7 +11,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.saved1);
+        setContentView(R.layout.course_lesson);
         getWindow().setStatusBarColor(Color.WHITE);
         // calling the action bar
         ActionBar actionBar = getSupportActionBar();
