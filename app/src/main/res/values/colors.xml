@@ -12,5 +12,6 @@
     <color name="gray_line">#F8F2EE</color>
     <color name="primary">#E3562A</color>
     <color name="danger">#F10000</color>
+    <color name="success">#5BA092</color>
 
 </resources>

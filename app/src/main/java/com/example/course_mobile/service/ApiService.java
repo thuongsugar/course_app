@@ -1,8 +1,11 @@
 package com.example.course_mobile.service;
 
+import com.example.course_mobile.model.course.Course;
 import com.example.course_mobile.model.user.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -12,7 +15,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface ApiService {
     //Link api https://fakestoreapi.com/products
@@ -31,8 +36,10 @@ public interface ApiService {
 //    @GET("category")
 //    Call<List<Category>>listCategory();
 //
-//    @GET("courses")
-//    Call<CourseList> listCourse();
+
+    @GET("courses/")
+    Call<List<Course>> listCourse(@Query("q") String query);
+
     @FormUrlEncoded
     @POST("user/")
     Call<ResponseBody> userRegister(@Field("username") String userName, @Field("email") String email, @Field("password") String passWord);
