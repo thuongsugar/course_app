@@ -19,6 +19,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiService {
@@ -41,6 +42,9 @@ public interface ApiService {
 
     @GET("courses/")
     Call<List<Course>> listCourse(@Header("Authorization") String token, @Query("q") String query);
+
+    @GET("courses/{pk}/register/")
+    Call<ResponseBody> checkRegister(@Header("Authorization") String token, @Path("pk") int id);
 
     @FormUrlEncoded
     @POST("user/")

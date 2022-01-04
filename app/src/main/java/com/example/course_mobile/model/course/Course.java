@@ -2,7 +2,9 @@ package com.example.course_mobile.model.course;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Course {
+import java.io.Serializable;
+
+public class Course implements Serializable {
     private int id;
      private  String subject;
      @SerializedName("description")

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -27,6 +28,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SearchActivity extends AppCompatActivity {
+    public static final String COURSE_OBJ = "COURSE_OBJ";
     private RecyclerView rcvResultCourse;
     private TextView tvNumberResult;
     private ProgressBar pgBarResult;
@@ -48,8 +50,23 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void addEvents() {
+        courseAdapter.onClickCourse(new CourseAdapter.OnClickCourse() {
+            @Override
+            public void onClick(Course courseClicked) {
+                handleClickCourse(courseClicked);
+            }
+        });
 
     }
+
+    private void handleClickCourse(Course courseClicked) {
+        Intent intentCourseDetail = new Intent(SearchActivity.this,CourseDetailActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(COURSE_OBJ,courseClicked);
+        intentCourseDetail.putExtras(bundle);
+        startActivity(intentCourseDetail);
+    }
+
     private void callApiSearch(){
         pgBarResult.setVisibility(View.VISIBLE);
         new Thread(new Runnable() {
@@ -64,7 +81,7 @@ public class SearchActivity extends AppCompatActivity {
                                     courseAdapter.setDataCourses(courseList);
                                     tvNumberResult.setText(courseList.size() +"");
                                     if(courseList.size() == 0){
-                                        // TODO: 04/01/2022  show not found 
+                                        // TODO: 04/01/2022  show not found
                                     }
                                 }
 

@@ -20,10 +20,13 @@ import java.util.List;
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseViewHolder> {
     private List<Course> courseList;
     private Context context;
+    private OnClickCourse onClickCourse;
 
     public void setDataCourses(List<Course> dataCourses){
         this.courseList = dataCourses;
         notifyDataSetChanged();
+    }
+    public CourseAdapter(){
     }
     @NonNull
     @Override
@@ -48,6 +51,23 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         holder.tvTitleCourse.setText(course.getSubject());
         holder.tvDesCourse.setText(course.getDes());
 
+        holder.cvCourse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(onClickCourse != null){
+                    onClickCourse.onClick(course);
+                }
+                return;
+            }
+        });
+
+
+    }
+    public void onClickCourse(OnClickCourse onClickCourse){
+        this.onClickCourse = onClickCourse;
+    }
+    public interface OnClickCourse{
+        void onClick(Course courseClicked);
     }
 
     @Override
@@ -59,18 +79,18 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     }
 
     class CourseViewHolder extends RecyclerView.ViewHolder  {
-        private CardView cardViewCourse;
         private ImageView imvCourse;
         private TextView tvRegisterNumber;
         private TextView tvTitleCourse;
         private TextView tvDesCourse;
+        private CardView cvCourse;
         public CourseViewHolder(@NonNull View itemView) {
             super(itemView);
-            cardViewCourse = itemView.findViewById(R.id.cvCourse);
             imvCourse = itemView.findViewById(R.id.imvCourse);
             tvRegisterNumber = itemView.findViewById(R.id.tvRegisterNumber);
             tvTitleCourse = itemView.findViewById(R.id.tvTitle);
             tvDesCourse = itemView.findViewById(R.id.tvDecs);
+            cvCourse = itemView.findViewById(R.id.cvCourse);
         }
     }
 }
