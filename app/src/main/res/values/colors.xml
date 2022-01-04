@@ -13,5 +13,6 @@
     <color name="primary">#E3562A</color>
     <color name="danger">#F10000</color>
     <color name="success">#5BA092</color>
+    <color name="dark_gray">#78746D</color>
 
 </resources>
