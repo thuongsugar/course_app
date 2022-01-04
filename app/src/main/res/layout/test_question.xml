@@ -9,14 +9,26 @@
         tools:context=".MainActivity"
         android:orientation="vertical"
         >
-        <TextView
+        <LinearLayout
             android:layout_width="375dp"
             android:layout_height="40dp"
-            android:text="Test Question"
-            android:gravity="center"
             android:layout_gravity="center"
-            android:textStyle="bold"
-            />
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/back"
+                />
+            <TextView
+                android:layout_width="263dp"
+                android:layout_height="32dp"
+                android:text="Test quetion"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="#3C3A36"
+                android:textSize="24sp"
+                />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="343dp"
