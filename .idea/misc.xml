@@ -22,7 +22,6 @@
         <entry key="..\:/Mobile/course_app/app/src/main/res/layout/activity_home.xml" value="0.14635416666666667" />
         <entry key="..\:/Mobile/course_app/app/src/main/res/layout/activity_login.xml" value="0.14635416666666667" />
         <entry key="..\:/Mobile/course_app/app/src/main/res/layout/activity_main.xml" value="0.14635416666666667" />
-
         <entry key="..\:/Mobile/course_app/app/src/main/res/layout/activity_search.xml" value="0.14010416666666667" />
         <entry key="..\:/Mobile/course_app/app/src/main/res/layout/activity_sign_up.xml" value="0.14322916666666666" />
         <entry key="..\:/Mobile/course_app/app/src/main/res/layout/course_lesson.xml" value="0.264" />
@@ -37,10 +36,8 @@
         <entry key="..\:/Mobile/course_app/app/src/main/res/layout/saved2.xml" value="0.14635416666666667" />
         <entry key="..\:/Mobile/course_app/app/src/main/res/layout/sigup.xml" value="0.14635416666666667" />
         <entry key="..\:/Mobile/course_app/app/src/main/res/layout/test_question.xml" value="0.14635416666666667" />
-
         <entry key="..\:/SourcseAndroid/CourseMobile/app/src/main/res/drawable/bogoc_button.xml" value="0.20625" />
         <entry key="..\:/SourcseAndroid/CourseMobile/app/src/main/res/drawable/border_edit_false.xml" value="0.20625" />
-
         <entry key="..\:/SourcseAndroid/CourseMobile/app/src/main/res/drawable/border_edit_text.xml" value="0.24010416666666667" />
         <entry key="..\:/SourcseAndroid/CourseMobile/app/src/main/res/drawable/button.xml" value="0.24010416666666667" />
         <entry key="..\:/SourcseAndroid/CourseMobile/app/src/main/res/drawable/my_button.xml" value="0.26666666666666666" />
@@ -57,6 +54,10 @@
         <entry key="..\:/SourcseAndroid/CourseMobile/app/src/main/res/layout/saved1.xml" value="0.4" />
         <entry key="..\:/SourcseAndroid/CourseMobile/app/src/main/res/layout/saved2.xml" value="0.4" />
         <entry key="..\:/SourcseAndroid/CourseMobile/app/src/main/res/menu/menu_bottom.xml" value="0.20677083333333332" />
+        <entry key="..\:/Users/vungo/AndroidStudioProjects/course_app/app/src/main/res/layout/activity_login.xml" value="0.3074074074074074" />
+        <entry key="..\:/Users/vungo/AndroidStudioProjects/course_app/app/src/main/res/layout/home_screen.xml" value="0.15648148148148147" />
+        <entry key="..\:/Users/vungo/AndroidStudioProjects/course_app/app/src/main/res/layout/product_detail.xml" value="0.3671875" />
+        <entry key="..\:/Users/vungo/AndroidStudioProjects/course_app/app/src/main/res/layout/results.xml" value="0.165" />
       </map>
     </option>
   </component>
