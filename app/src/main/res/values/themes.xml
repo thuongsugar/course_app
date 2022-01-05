@@ -32,5 +32,11 @@
         <item name="actionBarStyle">@style/Theme.CourseMobile.ToolBarTheme</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
+    <style name="Theme.CourseMobile.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.CourseMobile.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.CourseMobile.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

@@ -6,7 +6,9 @@
         <entry key="..\:/Mobile/course_app/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.16354166666666667" />
         <entry key="..\:/Mobile/course_app/app/src/main/res/drawable/border_edit_false.xml" value="0.159375" />
         <entry key="..\:/Mobile/course_app/app/src/main/res/drawable/border_edit_text.xml" value="0.159375" />
+        <entry key="..\:/Mobile/course_app/app/src/main/res/drawable/button.xml" value="0.21614583333333334" />
         <entry key="..\:/Mobile/course_app/app/src/main/res/drawable/button_question.xml" value="0.1625" />
+        <entry key="..\:/Mobile/course_app/app/src/main/res/drawable/button_test.xml" value="0.21614583333333334" />
         <entry key="..\:/Mobile/course_app/app/src/main/res/drawable/course_deta.xml" value="0.1" />
         <entry key="..\:/Mobile/course_app/app/src/main/res/drawable/course_lesson.xml" value="0.16354166666666667" />
         <entry key="..\:/Mobile/course_app/app/src/main/res/drawable/headers.xml" value="0.16354166666666667" />
@@ -18,16 +20,23 @@
         <entry key="..\:/Mobile/course_app/app/src/main/res/drawable/tab_1.xml" value="0.1" />
         <entry key="..\:/Mobile/course_app/app/src/main/res/drawable/tab_2.xml" value="0.1" />
         <entry key="..\:/Mobile/course_app/app/src/main/res/drawable/tab_3.xml" value="0.1" />
+        <entry key="..\:/Mobile/course_app/app/src/main/res/drawable/test_card.xml" value="0.1609375" />
         <entry key="..\:/Mobile/course_app/app/src/main/res/layout/abs_layout.xml" value="0.14635416666666667" />
+        <entry key="..\:/Mobile/course_app/app/src/main/res/layout/activity_course_detail.xml" value="0.19270833333333334" />
         <entry key="..\:/Mobile/course_app/app/src/main/res/layout/activity_home.xml" value="0.14635416666666667" />
         <entry key="..\:/Mobile/course_app/app/src/main/res/layout/activity_login.xml" value="0.14635416666666667" />
         <entry key="..\:/Mobile/course_app/app/src/main/res/layout/activity_main.xml" value="0.14635416666666667" />
-
+        <entry key="..\:/Mobile/course_app/app/src/main/res/layout/activity_onbroading.xml" value="0.19270833333333334" />
         <entry key="..\:/Mobile/course_app/app/src/main/res/layout/activity_search.xml" value="0.14010416666666667" />
         <entry key="..\:/Mobile/course_app/app/src/main/res/layout/activity_sign_up.xml" value="0.14322916666666666" />
-        <entry key="..\:/Mobile/course_app/app/src/main/res/layout/course_lesson.xml" value="0.264" />
+        <entry key="..\:/Mobile/course_app/app/src/main/res/layout/content_main.xml" value="0.14010416666666667" />
+        <entry key="..\:/Mobile/course_app/app/src/main/res/layout/course_lesson.xml" value="0.2" />
+        <entry key="..\:/Mobile/course_app/app/src/main/res/layout/course_test.xml" value="0.2" />
         <entry key="..\:/Mobile/course_app/app/src/main/res/layout/fragment_course.xml" value="0.4" />
+        <entry key="..\:/Mobile/course_app/app/src/main/res/layout/fragment_onboarding_frament3.xml" value="0.19270833333333334" />
+        <entry key="..\:/Mobile/course_app/app/src/main/res/layout/fragment_onboarding_frament4.xml" value="0.19270833333333334" />
         <entry key="..\:/Mobile/course_app/app/src/main/res/layout/fragment_profile.xml" value="0.14635416666666667" />
+        <entry key="..\:/Mobile/course_app/app/src/main/res/layout/fragment_second.xml" value="0.14010416666666667" />
         <entry key="..\:/Mobile/course_app/app/src/main/res/layout/fragment_setting.xml" value="0.14635416666666667" />
         <entry key="..\:/Mobile/course_app/app/src/main/res/layout/login.xml" value="0.14635416666666667" />
         <entry key="..\:/Mobile/course_app/app/src/main/res/layout/payment1.xml" value="0.14635416666666667" />
@@ -36,7 +45,7 @@
         <entry key="..\:/Mobile/course_app/app/src/main/res/layout/saved1.xml" value="0.1" />
         <entry key="..\:/Mobile/course_app/app/src/main/res/layout/saved2.xml" value="0.14635416666666667" />
         <entry key="..\:/Mobile/course_app/app/src/main/res/layout/sigup.xml" value="0.14635416666666667" />
-        <entry key="..\:/Mobile/course_app/app/src/main/res/layout/test_question.xml" value="0.14635416666666667" />
+        <entry key="..\:/Mobile/course_app/app/src/main/res/layout/test_question.xml" value="0.2" />
         <entry key="..\:/SourcseAndroid/CourseMobile/app/src/main/res/drawable/bogoc_button.xml" value="0.20625" />
         <entry key="..\:/SourcseAndroid/CourseMobile/app/src/main/res/drawable/border_edit_false.xml" value="0.20625" />
         <entry key="..\:/SourcseAndroid/CourseMobile/app/src/main/res/drawable/border_edit_text.xml" value="0.24010416666666667" />
