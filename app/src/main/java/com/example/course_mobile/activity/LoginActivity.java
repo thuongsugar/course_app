@@ -130,7 +130,7 @@ public class LoginActivity extends AppCompatActivity {
             toast.makeText(LoginActivity.this,"Dang nhap thanh cong",Toast.LENGTH_SHORT).show();
             User user = response.body();
             DataLocalManager.setUser(user);
-
+            DataLocalManager.setToken(user.getToken());
 
             // TODO: 03/01/2022 open home activity
             startActivity(new Intent(this,HomeActivity.class));

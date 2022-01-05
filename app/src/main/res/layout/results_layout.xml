@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/border_edit_text"
     android:layout_marginBottom="8dp"
     app:strokeWidth="1dp"
     app:strokeColor="@color/gray"
@@ -19,7 +18,8 @@
             android:id="@+id/imvCourse"
             android:layout_width="match_parent"
             android:layout_height="194dp"
-            android:src="@drawable/payment2"
+            android:background="@color/dark_gray"
+            android:src="@drawable/course_defaut"
 
             />
         <LinearLayout
@@ -41,8 +41,10 @@
                 android:layout_height="wrap_content"
                 android:textSize="24dp"
                 android:textColor="@color/black"
-                android:textFontWeight="500"
                 android:layout_marginBottom="4dp"
+                android:lineSpacingExtra="4sp"
+                android:lineHeight="32dp"
+                android:textStyle="bold"
                 android:text="Ui Advanced" />
             <TextView
                 android:id="@+id/tvDecs"

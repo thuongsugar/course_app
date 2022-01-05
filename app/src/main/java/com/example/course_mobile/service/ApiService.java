@@ -1,5 +1,6 @@
 package com.example.course_mobile.service;
 
+import com.example.course_mobile.data_local.DataLocalManager;
 import com.example.course_mobile.model.course.Course;
 import com.example.course_mobile.model.user.User;
 import com.google.gson.Gson;
@@ -16,7 +17,9 @@ import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiService {
@@ -38,7 +41,10 @@ public interface ApiService {
 //
 
     @GET("courses/")
-    Call<List<Course>> listCourse(@Query("q") String query);
+    Call<List<Course>> listCourse(@Header("Authorization") String token, @Query("q") String query);
+
+    @GET("courses/{pk}/register/")
+    Call<ResponseBody> checkRegister(@Header("Authorization") String token, @Path("pk") int id);
 
     @FormUrlEncoded
     @POST("user/")
