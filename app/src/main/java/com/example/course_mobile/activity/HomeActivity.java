@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -35,6 +36,7 @@ public class HomeActivity extends AppCompatActivity {
         initUI();
         addEvent();
     }
+
 
     private void addEvent() {
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -95,6 +97,13 @@ public class HomeActivity extends AppCompatActivity {
         // load fragment
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, fragment);
+        transaction.addToBackStack(null);
         transaction.commit();
+        FragmentManager fm = getFragmentManager();
+
+        for(int entry = 0; entry<fm.getBackStackEntryCount(); entry++){
+            Log.e("name", "Found fragment: " + fm.getBackStackEntryAt(entry).getId());
+        }
     }
+
 }

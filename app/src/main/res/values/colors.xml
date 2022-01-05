@@ -11,8 +11,10 @@
     <color name="gray">#BEBAB3</color>
     <color name="gray_line">#F8F2EE</color>
     <color name="primary">#E3562A</color>
+    <color name="second">#65AAEA</color>
     <color name="danger">#F10000</color>
     <color name="success">#5BA092</color>
     <color name="dark_gray">#78746D</color>
+    <color name="dark">#3C3A36</color>
 
 </resources>

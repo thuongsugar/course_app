@@ -8,6 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +20,8 @@ import android.widget.TextView;
 import com.example.course_mobile.R;
 import com.example.course_mobile.adapter.CourseAdapter;
 import com.example.course_mobile.data_local.DataLocalManager;
+import com.example.course_mobile.fragment.CourseFragment;
+import com.example.course_mobile.model.category.Category;
 import com.example.course_mobile.model.course.Course;
 import com.example.course_mobile.service.ApiService;
 
@@ -29,9 +34,12 @@ import retrofit2.Response;
 
 public class SearchActivity extends AppCompatActivity {
     public static final String COURSE_OBJ = "COURSE_OBJ";
+    private static final int DATA_COURSES = 0;
     private RecyclerView rcvResultCourse;
     private TextView tvNumberResult;
     private ProgressBar pgBarResult;
+
+    private Handler handler;
 
     private List<Course> courseList;
     private CourseAdapter courseAdapter;
@@ -40,13 +48,22 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         ActionBar actionBar = getSupportActionBar();
-        // Customize the back button
-        actionBar.setHomeAsUpIndicator(R.drawable.back);
-        // showing the back button in action bar
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle("");
+        initHandle();
         initUI();
         addEvents();
+    }
+
+    private void initHandle() {
+        handler = new Handler(Looper.myLooper()){
+            @Override
+            public void handleMessage(@NonNull Message msg) {
+                if(msg.what == DATA_COURSES){
+                    courseList = (List<Course>) msg.obj;
+                    courseAdapter.setDataCourses(courseList);
+                }
+                super.handleMessage(msg);
+            }
+        };
     }
 
     private void addEvents() {
@@ -67,22 +84,22 @@ public class SearchActivity extends AppCompatActivity {
         startActivity(intentCourseDetail);
     }
 
-    private void callApiSearch(){
+    private void callApiGetCourse(int idCategory){
         pgBarResult.setVisibility(View.VISIBLE);
         new Thread(new Runnable() {
             @Override
             public void run() {
-                ApiService.apiService.listCourse(DataLocalManager.getToken(),null)
+                ApiService.apiService.listCourse(DataLocalManager.getToken(),null,idCategory)
                         .enqueue(new Callback<List<Course>>() {
                             @Override
                             public void onResponse(Call<List<Course>> call, Response<List<Course>> response) {
                                 if(response.isSuccessful()){
-                                    courseList = response.body();
-                                    courseAdapter.setDataCourses(courseList);
-                                    tvNumberResult.setText(courseList.size() +"");
-                                    if(courseList.size() == 0){
-                                        // TODO: 04/01/2022  show not found
-                                    }
+                                    List<Course> courseList = response.body();
+                                    Message message = new Message();
+                                    message.what = DATA_COURSES;
+                                    message.obj = courseList;
+                                    handler.sendMessage(message);
+
                                 }
 
                                 pgBarResult.setVisibility(View.GONE);
@@ -108,8 +125,16 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void initUI() {
+        Category categorySelected = (Category) getIntent().getExtras().get(CourseFragment.TAG_CATEGORY);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setHomeAsUpIndicator(R.drawable.back);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle(categorySelected.getName());
+
         rcvResultCourse = findViewById(R.id.rcvResult);
         tvNumberResult = findViewById(R.id.tvNubberResult);
+
         pgBarResult = findViewById(R.id.pgBarResult);
 
         courseList = new ArrayList<>();
@@ -117,7 +142,9 @@ public class SearchActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         rcvResultCourse.setLayoutManager(linearLayoutManager);
         rcvResultCourse.setAdapter(courseAdapter);
-        callApiSearch();
+
+
+        callApiGetCourse(categorySelected.getId());
 
     }
 }

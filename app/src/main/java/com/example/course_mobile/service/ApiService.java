@@ -1,6 +1,7 @@
 package com.example.course_mobile.service;
 
 import com.example.course_mobile.data_local.DataLocalManager;
+import com.example.course_mobile.model.category.Category;
 import com.example.course_mobile.model.course.Course;
 import com.example.course_mobile.model.user.User;
 import com.google.gson.Gson;
@@ -36,19 +37,23 @@ public interface ApiService {
 //    @GET("products")
 //    Call<List<User>> listProduct();
 
-//    @GET("category")
-//    Call<List<Category>>listCategory();
-//
+    @GET("category")
+    Call<List<Category>>listCategory();
+
 
     @GET("courses/")
-    Call<List<Course>> listCourse(@Header("Authorization") String token, @Query("q") String query);
+    Call<List<Course>> listCourse(@Header("Authorization") String token
+            , @Query("q") String query
+            ,@Query("category_id") Integer categoryId);
 
     @GET("courses/{pk}/register/")
     Call<ResponseBody> checkRegister(@Header("Authorization") String token, @Path("pk") int id);
 
     @FormUrlEncoded
     @POST("user/")
-    Call<ResponseBody> userRegister(@Field("username") String userName, @Field("email") String email, @Field("password") String passWord);
+    Call<ResponseBody> userRegister(@Field("username") String userName
+            , @Field("email") String email
+            , @Field("password") String passWord);
 
     @FormUrlEncoded
     @POST("login/")

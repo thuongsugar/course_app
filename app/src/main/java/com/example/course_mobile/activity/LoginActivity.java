@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
                 public void onActivityResult(ActivityResult result) {
                     if(result.getResultCode() == RESULT_OK){
                         Intent i = result.getData();
-                        String userName = i.getStringExtra("userName");
+                        String userName = i.getStringExtra(SignUpActivity.USER_NAME_TAG);
                         edtUserName.setText(userName);
                     }
                 }

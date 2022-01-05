@@ -24,13 +24,14 @@
             android:name=".activity.SignUpActivity"
             android:exported="true" />
         <activity
-            android:name=".activity.HomeActivity"
+            android:name=".activity.SearchActivity"
+
             android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true" />
         <activity
-            android:name=".activity.SearchActivity"
+            android:name=".activity.HomeActivity"
 
             android:exported="true">
             <intent-filter>

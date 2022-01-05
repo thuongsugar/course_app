@@ -1,10 +1,12 @@
 package com.example.course_mobile.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
@@ -125,5 +127,12 @@ public class CourseDetailActivity extends AppCompatActivity {
         tvTitle.setText(courseSelected.getSubject());
         tvDes.setText(courseSelected.getDes());
 
+    }
+
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == android.R.id.home){
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

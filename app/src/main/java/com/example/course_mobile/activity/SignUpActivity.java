@@ -27,6 +27,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SignUpActivity extends AppCompatActivity {
+    public static final String USER_NAME_TAG = "userName";
     private ImageView imvShowPass;
     private ImageView imvHiddenPass;
     private EditText edtUserName;
@@ -118,7 +119,7 @@ public class SignUpActivity extends AppCompatActivity {
         if(response.isSuccessful()){
             toast.makeText(this,"Dang ky thanh cong",Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this,LoginActivity.class);
-            intent.putExtra("userName", userName);
+            intent.putExtra(USER_NAME_TAG, userName);
             setResult(RESULT_OK,intent);
             finish();
             return;
