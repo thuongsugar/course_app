@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -67,6 +68,7 @@ public class CourseFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.e("goi lai","oncreate");
+        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
     }
 
     @Override
@@ -151,6 +153,7 @@ public class CourseFragment extends Fragment {
         rfCourse = view.findViewById(R.id.rfCourse);
         rfCourse.setColorSchemeColors(getResources().getColor(R.color.primary));
         pgHome = view.findViewById(R.id.pgHome);
+        pgHome.setVisibility(View.VISIBLE);
         edtSearch = view.findViewById(R.id.edtSearch);
         searchContent = edtSearch.getText().toString().trim();
 

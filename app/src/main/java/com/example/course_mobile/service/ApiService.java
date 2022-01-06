@@ -49,6 +49,9 @@ public interface ApiService {
     @GET("courses/{pk}/register/")
     Call<ResponseBody> checkRegister(@Header("Authorization") String token, @Path("pk") int id);
 
+    @POST("courses/{pk}/register/")
+    Call<ResponseBody> postRegister(@Header("Authorization") String token, @Path("pk") int id);
+
     @FormUrlEncoded
     @POST("user/")
     Call<ResponseBody> userRegister(@Field("username") String userName

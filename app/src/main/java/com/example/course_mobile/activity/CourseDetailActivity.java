@@ -5,13 +5,18 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.course_mobile.R;
@@ -27,10 +32,18 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CourseDetailActivity extends AppCompatActivity {
+    private static final int REGISTER_DATA = 99;
+    private static final int SUCCESS_REGISTER = 1;
+    private static final int ERROR_REGISTER = 2;
     private Button btnDetail;
     private ImageView imvDetail;
     private TextView tvTitle, tvDes,tvNumRegDetail;
     private Animation animation;
+
+    private boolean isRegistered;
+    private Handler handler;
+
+    private Course courseSelected;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,14 +54,95 @@ public class CourseDetailActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle("UI Advance");
 
+        initHandle();
         initUI();
         addEvents();
 
 
     }
 
-    private void addEvents() {
+    private void initHandle() {
+        handler = new Handler(Looper.myLooper()){
+            @Override
+            public void handleMessage(@NonNull Message msg) {
 
+                switch (msg.what){
+                    case REGISTER_DATA:
+                        isRegistered = (boolean) msg.obj;
+                        handleButton();
+                        break;
+                    case SUCCESS_REGISTER:
+
+                        Toast.makeText(CourseDetailActivity.this,"dangki tahnh cong", Toast.LENGTH_LONG).show();
+                        break;
+
+                    case ERROR_REGISTER:
+                        Toast.makeText(CourseDetailActivity.this,"dang ki that bai",Toast.LENGTH_LONG).show();
+                        break;
+                    default:
+                        break;
+                }
+
+
+                super.handleMessage(msg);
+            }
+
+        };
+    }
+
+    private void handleButton() {
+        if (isRegistered){
+            btnDetail.setText("Da dang ki, hoc ngay");
+        }else {
+            btnDetail.setText("Dang ki ngay");
+        }
+
+    }
+
+    private void addEvents() {
+        btnDetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                handleButtonClicked();
+            }
+        });
+    }
+
+    private void handleButtonClicked() {
+        //kiem tra dang ki neu chua dki thi goi api dki,roi thi sang trang hoc
+        if (isRegistered){
+            // TODO: 05/01/2022 mo man hinh  hoc
+        }
+        else {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    ApiService.apiService.postRegister(
+                            DataLocalManager.getToken()
+                            ,courseSelected.getId())
+                            .enqueue(new Callback<ResponseBody>() {
+                                @Override
+                                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                    handleResponse(response);
+                                }
+
+                                @Override
+                                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                    Log.e("Loi khong goi api",t.toString());
+                                }
+                            });
+                }
+
+                private void handleResponse(Response<ResponseBody> response) {
+                    if (response.isSuccessful()){
+                        Log.e("code tra ve",response.code() + "");
+                        handler.sendEmptyMessage(SUCCESS_REGISTER);
+                        return;
+                    }
+                    handler.sendEmptyMessage(ERROR_REGISTER);
+                }
+            }).start();
+        }
     }
 
     private void initUI() {
@@ -96,17 +190,13 @@ public class CourseDetailActivity extends AppCompatActivity {
                     try {
                         JSONObject jsonObject = new JSONObject(response.body().string());
                         boolean isRegistered = jsonObject.optBoolean("is_registered");
-                        if(isRegistered){
-                            btnDetail.setText("Da dang ky hoc ngay");
-                        } else {
-                            btnDetail.setText("Dang ky hoc");
-                        }
+                        Message message = new Message();
+                        message.what = REGISTER_DATA;
+                        message.obj = isRegistered;
+                        handler.sendMessage(message);
                     }catch (Exception e){
                         Log.e("Loi phan tich data",e.toString());
                     }
-
-
-
                 }
             }
         }).start();
@@ -114,7 +204,7 @@ public class CourseDetailActivity extends AppCompatActivity {
 
     private void getBundle() {
         Bundle bundle = getIntent().getExtras();
-        Course courseSelected = (Course) bundle.get(SearchActivity.COURSE_OBJ);
+        courseSelected = (Course) bundle.get(SearchActivity.COURSE_OBJ);
 
         checkRegister(courseSelected.getId());
 
