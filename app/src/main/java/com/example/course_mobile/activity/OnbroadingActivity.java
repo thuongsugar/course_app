@@ -1,4 +1,4 @@
-package com.example.course_mobile.onbroading;
+package com.example.course_mobile.activity;
 
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.course_mobile.R;
+import com.example.course_mobile.adapter.ViewPagerAdapter;
+
 import me.relex.circleindicator.CircleIndicator;
 
 public class OnbroadingActivity extends AppCompatActivity {
@@ -19,7 +22,7 @@ public class OnbroadingActivity extends AppCompatActivity {
     private CircleIndicator circleIndicator;
     private LinearLayout layoutNext;
 
-    private com.phuc.my_project.ViewPagerAdapter viewPagerAdapter;
+    private ViewPagerAdapter viewPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +31,7 @@ public class OnbroadingActivity extends AppCompatActivity {
 
         initUI();
 
-        viewPagerAdapter = new com.phuc.my_project.ViewPagerAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         viewPager.setAdapter(viewPagerAdapter);
         circleIndicator.setViewPager(viewPager);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {

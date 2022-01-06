@@ -36,6 +36,10 @@ public class DataLocalManager {
     }
     public static User getUser(){
         String jsonUser = DataLocalManager.getInstance().courseSharedPreferences.getStringValue(USER_DATA);
+        if  (jsonUser.isEmpty()){
+            User u = new User(null,-1,"Anonymous","","");
+            return u;
+        }
         Gson gson = new Gson();
         User u = gson.fromJson(jsonUser,User.class);
         return u;

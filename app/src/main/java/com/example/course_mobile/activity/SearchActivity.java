@@ -60,6 +60,10 @@ public class SearchActivity extends AppCompatActivity {
                 if(msg.what == DATA_COURSES){
                     courseList = (List<Course>) msg.obj;
                     courseAdapter.setDataCourses(courseList);
+                    tvNumberResult.setText(courseList.size()+"");
+                    pgBarResult.setVisibility(View.GONE);
+
+
                 }
                 super.handleMessage(msg);
             }
@@ -89,7 +93,7 @@ public class SearchActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                ApiService.apiService.listCourse(DataLocalManager.getToken(),null,idCategory)
+                ApiService.apiService.listCourse(null,idCategory)
                         .enqueue(new Callback<List<Course>>() {
                             @Override
                             public void onResponse(Call<List<Course>> call, Response<List<Course>> response) {
@@ -99,7 +103,7 @@ public class SearchActivity extends AppCompatActivity {
                                     message.what = DATA_COURSES;
                                     message.obj = courseList;
                                     handler.sendMessage(message);
-
+                                    return;
                                 }
 
                                 pgBarResult.setVisibility(View.GONE);

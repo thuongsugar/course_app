@@ -3,6 +3,8 @@ package com.example.course_mobile.service;
 import com.example.course_mobile.data_local.DataLocalManager;
 import com.example.course_mobile.model.category.Category;
 import com.example.course_mobile.model.course.Course;
+import com.example.course_mobile.model.lesson.Lesson;
+import com.example.course_mobile.model.quiz.Quiz;
 import com.example.course_mobile.model.user.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -30,7 +32,8 @@ public interface ApiService {
             .create();
 
     ApiService apiService = new Retrofit.Builder()
-            .baseUrl("http://10.0.3.2:8000/api/")
+//            .baseUrl("http://10.0.3.2:8000/api/")
+            .baseUrl("https://3892-2402-800-61b3-836d-3478-1969-3b7f-4bca.ngrok.io/api/")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(ApiService.class);
@@ -42,8 +45,7 @@ public interface ApiService {
 
 
     @GET("courses/")
-    Call<List<Course>> listCourse(@Header("Authorization") String token
-            , @Query("q") String query
+    Call<List<Course>> listCourse(@Query("q") String query
             ,@Query("category_id") Integer categoryId);
 
     @GET("courses/{pk}/register/")
@@ -51,6 +53,12 @@ public interface ApiService {
 
     @POST("courses/{pk}/register/")
     Call<ResponseBody> postRegister(@Header("Authorization") String token, @Path("pk") int id);
+
+    @GET("courses/{pk}/lesson/")
+    Call<List<Lesson>> getLesson(@Header("Authorization") String token, @Path("pk") int id);
+
+    @GET("courses/{pk}/quiz/")
+    Call<List<Quiz>> getQuiz(@Header("Authorization") String token, @Path("pk") int id);
 
     @FormUrlEncoded
     @POST("user/")

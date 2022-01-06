@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    tools:context=".activity.ChoiceLessonActivity">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="@color/gray"
+                    app:cardElevation="5dp"
+                    app:cardCornerRadius="8dp"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/tvTitleChoiceLesson"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Java co ban"
+                            android:textSize="24sp"
+                            android:lineHeight="32dp"
+                            android:textColor="@color/dark"
+                            android:textStyle="bold"
+                            />
+                        <ScrollView
+                            android:layout_width="match_parent"
+                            android:layout_height="84dp"
+                            android:paddingBottom="8dp"
+                            >
+                            <TextView
+                                android:id="@+id/tvDesChoiceLesson"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="mo ta khoa hoc"
+                                android:textColor="@color/dark_gray"
+                                android:textSize="16sp"
+                                android:layout_marginTop="8dp"
+                                android:paddingBottom="8dp"
+                                />
+                        </ScrollView>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+               <com.google.android.material.tabs.TabLayout
+                   android:id="@+id/tabLayoutLesson"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                    android:background="@color/light_gray"
+                   app:tabTextColor="@color/dark"
+                   app:tabSelectedTextColor="@color/primary"
+                   app:tabIndicatorHeight="3dp"
+                   app:tabIndicatorColor="@color/primary"
+                   />
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/vpLesson"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="16dp"
+                    />
+            </LinearLayout>
+
+</LinearLayout>

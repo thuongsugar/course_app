@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/gray"
+    app:cardCornerRadius="8dp"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="194dp"
+            android:src="@drawable/course_defaut"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingRight="16dp"
+            android:paddingLeft="16dp"
+            >
+            <TextView
+                android:id="@+id/tvQuizName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Title quiz"
+                android:textColor="@color/dark"
+                android:textFontWeight="800"
+                android:fontFamily="sans-serif"
+                android:textSize="20sp"
+                android:lineHeight="26dp"
+                />
+            <TextView
+                android:id="@+id/tvNumberQuestionQuiz"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="20 cau hoi"
+                android:textSize="14sp"
+                android:textColor="@color/dark_gray"
+                android:layout_marginTop="8dp"
+                />
+            <Button
+                android:id="@+id/btnStartQuiz"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bat dau"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:paddingBottom="8dp"
+                android:paddingTop="8dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="32dp"
+                android:background="@drawable/btn_begin_quiz"
+                />
+        </LinearLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

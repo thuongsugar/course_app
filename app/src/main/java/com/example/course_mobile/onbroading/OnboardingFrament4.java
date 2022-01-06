@@ -9,6 +9,9 @@ import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.course_mobile.MainActivity;
+import com.example.course_mobile.R;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link OnboardingFrament4#newInstance} factory method to
@@ -68,7 +71,7 @@ public class OnboardingFrament4 extends Fragment {
         btnGetStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),MainActivity.class);
+                Intent intent = new Intent(getActivity(), MainActivity.class);
                 getActivity().startActivity(intent);
             }
         });

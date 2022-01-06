@@ -1,9 +1,14 @@
-package com.example.course_mobile.onbroading;
+package com.example.course_mobile.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
+
+import com.example.course_mobile.onbroading.OnboardingFrament1;
+import com.example.course_mobile.onbroading.OnboardingFrament2;
+import com.example.course_mobile.onbroading.OnboardingFrament3;
+import com.example.course_mobile.onbroading.OnboardingFrament4;
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 

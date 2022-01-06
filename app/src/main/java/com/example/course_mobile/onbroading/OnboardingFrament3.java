@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.course_mobile.R;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link OnboardingFrament3#newInstance} factory method to

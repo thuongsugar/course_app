@@ -4,10 +4,14 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
@@ -62,6 +66,7 @@ public class LoginActivity extends AppCompatActivity {
         addEvent();
     }
 
+
     private void addEvent() {
         imvShowPass.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,42 +114,49 @@ public class LoginActivity extends AppCompatActivity {
 
     private void login(String userName, String passWord) {
         showProgressBar();
-        ApiService.apiService.user(userName,passWord)
-                .enqueue(new Callback<User>() {
-                    @Override
-                    public void onResponse(Call<User> call, Response<User> response) {
-                        handleLoginResponse(response);
-                        hiddenProgressBar();
-                    }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                ApiService.apiService.user(userName,passWord)
+                        .enqueue(new Callback<User>() {
+                            @Override
+                            public void onResponse(Call<User> call, Response<User> response) {
+                                hiddenProgressBar();
+                                handleLoginResponse(response);
+                            }
 
-                    @Override
-                    public void onFailure(Call<User> call, Throwable t) {
-                        hiddenProgressBar();
-                        Log.e("loii",t.toString());
-                    }
-                });
+                            @Override
+                            public void onFailure(Call<User> call, Throwable t) {
+                                hiddenProgressBar();
+                                Log.e("loi khong goi api login",t.toString());
+                            }
+                        });
+            }
+            private void handleLoginResponse(Response<User> response) {
+                if(response.isSuccessful()){
+                    toast.makeText(LoginActivity.this,"Dang nhap thanh cong",Toast.LENGTH_SHORT).show();
+                    User user = response.body();
+                    DataLocalManager.setUser(user);
+                    DataLocalManager.setToken(user.getToken());
+
+                    // TODO: 03/01/2022 open home activity
+//                    startActivity(new Intent(this,HomeActivity.class));
+                    finish();
+
+                }
+                else if(response.code() >= 500){
+                    toast.makeText(LoginActivity.this, "Loi server",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    toast.makeText(LoginActivity.this, "Thong tin dang nhap khong chinh xac",Toast.LENGTH_SHORT).show();
+                    dangerEditText();
+                }
+            }
+        }).start();
+
     }
 
-    private void handleLoginResponse(Response<User> response) {
-        if(response.isSuccessful()){
-            toast.makeText(LoginActivity.this,"Dang nhap thanh cong",Toast.LENGTH_SHORT).show();
-            User user = response.body();
-            DataLocalManager.setUser(user);
-            DataLocalManager.setToken(user.getToken());
 
-            // TODO: 03/01/2022 open home activity
-            startActivity(new Intent(this,HomeActivity.class));
-            finish();
-
-        }
-        else if(response.code() >= 500){
-            toast.makeText(LoginActivity.this, "Loi server",Toast.LENGTH_SHORT).show();
-        }
-        else {
-            toast.makeText(LoginActivity.this, "Thong tin dang nhap khong chinh xac",Toast.LENGTH_SHORT).show();
-            dangerEditText();
-        }
-    }
 
     private void openSignUpActivity() {
         Intent intent = new Intent(this, SignUpActivity.class);

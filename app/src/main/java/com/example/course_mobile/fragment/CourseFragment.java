@@ -21,6 +21,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -100,6 +101,8 @@ public class CourseFragment extends Fragment {
                 else if(msg.what == COURSE_LIST){
                     courseList = (List<Course>) msg.obj;
                     courseAdapter.setDataCourses(courseList);
+                    pgHome.setVisibility(View.GONE);
+
                 }
                 super.handleMessage(msg);
             }
@@ -131,6 +134,10 @@ public class CourseFragment extends Fragment {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
                         (keyCode == KeyEvent.KEYCODE_ENTER)){
+
+                    InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(edtSearch.getWindowToken(), 0);
+
                    searchContent = edtSearch.getText().toString().trim();
                     callApiCourse(searchContent);
                     return true;
@@ -185,12 +192,11 @@ public class CourseFragment extends Fragment {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                ApiService.apiService.listCourse(DataLocalManager.getToken(), finalQueryCourse,null)
+                ApiService.apiService.listCourse(finalQueryCourse,null)
                         .enqueue(new Callback<List<Course>>() {
                             @Override
                             public void onResponse(Call<List<Course>> call, Response<List<Course>> response) {
                                 rfCourse.setRefreshing(false);
-                                pgHome.setVisibility(View.GONE);
                                 if(response.isSuccessful()){
                                     List<Course> courseList = response.body();
                                     Message message = new Message();
@@ -199,6 +205,7 @@ public class CourseFragment extends Fragment {
                                     handler.sendMessage(message);
                                     return;
                                 }
+                                pgHome.setVisibility(View.GONE);
                                 Log.e("Status", response.code()+"");
                             }
 

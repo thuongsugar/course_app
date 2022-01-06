@@ -16,5 +16,6 @@
     <color name="success">#5BA092</color>
     <color name="dark_gray">#78746D</color>
     <color name="dark">#3C3A36</color>
+    <color name="light_gray">#F8F2EE</color>
 
 </resources>

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -15,6 +16,7 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,9 +37,11 @@ public class CourseDetailActivity extends AppCompatActivity {
     private static final int REGISTER_DATA = 99;
     private static final int SUCCESS_REGISTER = 1;
     private static final int ERROR_REGISTER = 2;
+    public static final String COURSE_DATA = "course data";
     private Button btnDetail;
     private ImageView imvDetail;
     private TextView tvTitle, tvDes,tvNumRegDetail;
+    private ProgressBar pgBarDetail;
     private Animation animation;
 
     private boolean isRegistered;
@@ -78,6 +82,8 @@ public class CourseDetailActivity extends AppCompatActivity {
 
                     case ERROR_REGISTER:
                         Toast.makeText(CourseDetailActivity.this,"dang ki that bai",Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(CourseDetailActivity.this,LoginActivity.class));
+                        finish();
                         break;
                     default:
                         break;
@@ -91,11 +97,13 @@ public class CourseDetailActivity extends AppCompatActivity {
     }
 
     private void handleButton() {
+        pgBarDetail.setVisibility(View.GONE);
         if (isRegistered){
             btnDetail.setText("Da dang ki, hoc ngay");
         }else {
             btnDetail.setText("Dang ki ngay");
         }
+        btnDetail.setVisibility(View.VISIBLE);
 
     }
 
@@ -111,7 +119,10 @@ public class CourseDetailActivity extends AppCompatActivity {
     private void handleButtonClicked() {
         //kiem tra dang ki neu chua dki thi goi api dki,roi thi sang trang hoc
         if (isRegistered){
-            // TODO: 05/01/2022 mo man hinh  hoc
+            Intent intentChoiceLesson = new Intent(CourseDetailActivity.this,ChoiceLessonActivity.class);
+            intentChoiceLesson.putExtra(COURSE_DATA, courseSelected);
+            startActivity(intentChoiceLesson);
+            finish();
         }
         else {
             new Thread(new Runnable() {
@@ -138,15 +149,17 @@ public class CourseDetailActivity extends AppCompatActivity {
                         Log.e("code tra ve",response.code() + "");
                         handler.sendEmptyMessage(SUCCESS_REGISTER);
                         return;
+                    }else if(response.code() == 401){
+                        handler.sendEmptyMessage(ERROR_REGISTER);
                     }
-                    handler.sendEmptyMessage(ERROR_REGISTER);
                 }
             }).start();
         }
     }
 
     private void initUI() {
-
+        pgBarDetail = findViewById(R.id.pgBarDetail);
+        pgBarDetail.setVisibility(View.VISIBLE);
         imvDetail = findViewById(R.id.imvCourseDetail);
         tvTitle = findViewById(R.id.tvTitleDetail);
         tvDes = findViewById(R.id.tvDesDetail);
@@ -167,7 +180,6 @@ public class CourseDetailActivity extends AppCompatActivity {
     }
 
     private void checkRegister(int id) {
-        Log.e("token",id +"");
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -188,16 +200,20 @@ public class CourseDetailActivity extends AppCompatActivity {
             private void handleRegisterResult(Response<ResponseBody> response) {
                 if (response.isSuccessful()){
                     try {
-                        JSONObject jsonObject = new JSONObject(response.body().string());
-                        boolean isRegistered = jsonObject.optBoolean("is_registered");
-                        Message message = new Message();
-                        message.what = REGISTER_DATA;
-                        message.obj = isRegistered;
-                        handler.sendMessage(message);
+                            JSONObject jsonObject = new JSONObject(response.body().string());
+                            boolean isRegistered = jsonObject.optBoolean("is_registered");
+                            Message message = new Message();
+                            message.what = REGISTER_DATA;
+                            message.obj = isRegistered;
+                            handler.sendMessage(message);
                     }catch (Exception e){
                         Log.e("Loi phan tich data",e.toString());
                     }
+                }else if(response.code() == 401){
+
+                    handler.sendEmptyMessage(ERROR_REGISTER);
                 }
+
             }
         }).start();
     }
