@@ -4,111 +4,55 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     >
-    <LinearLayout
-        android:layout_width="375dp"
-        android:layout_height="40dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        >
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/back"
-            />
-        <TextView
-            android:layout_width="263dp"
-            android:layout_height="32dp"
-            android:text="Course lesson"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:textColor="#3C3A36"
-            android:textSize="24sp"
-            />
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="697dp"
-        android:background="@drawable/course_deta"
-        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="127dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="10dp"
+            android:padding="16dp"
             >
 
             <TextView
+                android:id="@+id/tvSubject"
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
                 android:gravity="center"
                 android:text="Tags For Headers"
-                android:textColor="#3C3A36"
+                android:textColor="@color/dark"
                 android:textSize="24sp"
                 android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <ScrollView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="8dp">
+                android:layout_marginTop="8dp"
 
-                <Button
-                    android:layout_width="wrap_content"
+                >
+                <TextView
+                    android:id="@+id/tvLessonContent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/tab_1"
-                    android:gravity="center"
-                    android:text="Lessons"
-                    />
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:background="@drawable/tab_2"
-                    android:gravity="center"
-                    android:text="Tests" />
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/tab_3"
-                    android:gravity="center"
-                    android:text="Discuss" />
-            </LinearLayout>
-        </LinearLayout>
-        <ImageView
-            android:layout_width="343dp"
-            android:layout_height="194dp"
-            android:src="@drawable/test_question"
-            android:layout_gravity="center"
-            android:layout_marginTop="8dp"
-            />
-        <TextView
-            android:layout_width="343dp"
-            android:layout_height="26dp"
-            android:text="Introduction"
-            android:textSize="20sp"
-            android:textFontWeight="500"
-            android:textColor="#3C3A36"
-            android:layout_gravity="center"
-            android:layout_marginTop="8dp"
-            />
-        <TextView
-            android:layout_width="343dp"
-            android:layout_height="294dp"
-            android:layout_marginTop="4dp"
-            android:layout_gravity="center"
-            android:text="You can launch a new career in web develop-
+                    android:text="You can launch a new career in web develop-
+            ment today by learning HTML , CSS. You don't need a computer science degree or expensive software. All you need is a computer, a bit of time,
+            a lot of determination, and a teacher you trust.
+            Once the form data has been validated on the client-side, it is okay to submit the form. And, since we covered validation in the previous article, we're ready to submit! This article looks at what happens when a user submits a form — where does the data go, and how do we handle it when it gets there? We also look at some of the security concerns.You can launch a new career in web develop-
+            ment today by learning HTML , CSS. You don't need a computer science degree or expensive software. All you need is a computer, a bit of time,
+            a lot of determination, and a teacher you trust.
+            Once the form data has been validated on the client-side, it is okay to submit the form. And, since we covered validation in the previous article, we're ready to submit! This article looks at what happens when a user submits a form — where does the data go, and how do we handle it when it gets there? We also look at some of the security concerns.You can launch a new career in web develop-
+            ment today by learning HTML , CSS. You don't need a computer science degree or expensive software. All you need is a computer, a bit of time,
+            a lot of determination, and a teacher you trust.
+            Once the form data has been validated on the client-side, it is okay to submit the form. And, since we covered validation in the previous article, we're ready to submit! This article looks at what happens when a user submits a form — where does the data go, and how do we handle it when it gets there? We also look at some of the security concerns.You can launch a new career in web develop-
             ment today by learning HTML , CSS. You don't need a computer science degree or expensive software. All you need is a computer, a bit of time,
             a lot of determination, and a teacher you trust.
             Once the form data has been validated on the client-side, it is okay to submit the form. And, since we covered validation in the previous article, we're ready to submit! This article looks at what happens when a user submits a form — where does the data go, and how do we handle it when it gets there? We also look at some of the security concerns."
-            android:textSize="14sp"
-            android:lineHeight="21sp"
-            android:textColor="#78746D"
-            />
+                    android:textSize="14sp"
+                    android:lineSpacingMultiplier="1.26"
+                    android:textColor="@color/dark_gray"
+                    android:paddingBottom="16dp"
+                    />
+            </ScrollView>
+
         </LinearLayout>
+
+
+
 </LinearLayout>

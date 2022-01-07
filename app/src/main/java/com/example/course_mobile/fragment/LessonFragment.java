@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.course_mobile.R;
 import com.example.course_mobile.activity.ChoiceLessonActivity;
+import com.example.course_mobile.activity.LessonCourseActivity;
 import com.example.course_mobile.activity.LoginActivity;
 import com.example.course_mobile.adapter.LessonAdapter;
 import com.example.course_mobile.adapter.ViewPagerLesson;
@@ -39,6 +40,8 @@ public class LessonFragment extends Fragment {
     private static final int LESSON_DATA = 99;
     private static final int AUTHORIZE_LESSON = 0;
     private static final int ERROR_LESSON = 1;
+
+    public static final String LESSON_CHOICE = "LESSON_CHOICE";
 
     private RecyclerView rcvLesson;
     private LessonAdapter lessonAdapter;
@@ -66,7 +69,18 @@ public class LessonFragment extends Fragment {
     }
 
     private void addEvents() {
+        lessonAdapter.setOnClickLesson(new LessonAdapter.OnClickLesson() {
+            @Override
+            public void onClick(Lesson lesson) {
+                openLessonCourse(lesson);
+            }
+        });
+    }
 
+    private void openLessonCourse(Lesson lesson) {
+        Intent intent = new Intent(getContext(), LessonCourseActivity.class);
+        intent.putExtra(LESSON_CHOICE,lesson);
+        startActivity(intent);
     }
 
     private void initUI(View view) {

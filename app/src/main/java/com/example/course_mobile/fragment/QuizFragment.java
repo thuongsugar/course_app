@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.course_mobile.R;
@@ -43,6 +44,7 @@ public class QuizFragment extends Fragment {
     private QuizAdapter quizAdapter;
 
     private int idCourse;
+    private String imageCourse;
     private Handler handler;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,8 +52,10 @@ public class QuizFragment extends Fragment {
         final Bundle bundle = getArguments();
         if(bundle == null){
             idCourse = -1;
+            imageCourse = "";
         }
         idCourse = bundle.getInt(ChoiceLessonActivity.COURSE_ID);
+        imageCourse = bundle.getString(ChoiceLessonActivity.COURSE_IMAGE);
         initHandle();
     }
 
@@ -62,7 +66,7 @@ public class QuizFragment extends Fragment {
                 switch (msg.what){
                     case QUIZ_DATA:
                         quizList = (List<Quiz>) msg.obj;
-                        quizAdapter.setQuizList(quizList);
+                        quizAdapter.setQuizList(quizList,imageCourse);
                         break;
                     case QUIZ_401:
                         startActivity(new Intent(getContext(), LoginActivity.class));

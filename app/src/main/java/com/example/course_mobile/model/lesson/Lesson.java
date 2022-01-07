@@ -1,6 +1,8 @@
 package com.example.course_mobile.model.lesson;
 
-public class Lesson {
+import java.io.Serializable;
+
+public class Lesson implements Serializable {
     private int id;
     private String subject;
     private String content;

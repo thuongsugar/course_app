@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,6 +39,7 @@ import retrofit2.Response;
 
 public class ChoiceLessonActivity extends AppCompatActivity {
     public static final String COURSE_ID = "DATA_ID_COURSE";
+    public static final String COURSE_IMAGE = "course_image";
 
     private ImageView imvChoiceLesson;
     private TextView tvTitleChoiceLesson,tvDesChoiceLesson;
@@ -63,6 +65,12 @@ public class ChoiceLessonActivity extends AppCompatActivity {
         initUI();
         addEvents();
     }
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == android.R.id.home){
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     private void addEvents() {
 
@@ -79,6 +87,7 @@ public class ChoiceLessonActivity extends AppCompatActivity {
         getBundle();
         Bundle bundle = new Bundle();
         bundle.putInt(COURSE_ID,courseDetail.getId());
+        bundle.putString(COURSE_IMAGE,courseDetail.getImage());
         adapterViewPager = new ViewPagerLesson(this,bundle);
 
         viewPagerLesson.setAdapter(adapterViewPager);

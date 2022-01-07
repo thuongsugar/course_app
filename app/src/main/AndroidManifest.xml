@@ -14,6 +14,9 @@
         android:theme="@style/Theme.CourseMobile"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activity.LessonCourseActivity"
+            android:exported="true" />
+        <activity
             android:name=".activity.ChoiceLessonActivity"
             android:exported="true" />
         <activity
@@ -33,7 +36,6 @@
             android:exported="true" />
         <activity
             android:name=".activity.HomeActivity"
-
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
