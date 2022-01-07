@@ -1,169 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:padding="16dp"
+    >
+
     <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MainActivity"
+        android:layout_height="0dp"
         android:orientation="vertical"
-        >
-        <LinearLayout
-            android:layout_width="375dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            >
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/back"
-                />
-            <TextView
-                android:layout_width="263dp"
-                android:layout_height="32dp"
-                android:text="Test quetion"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:textColor="#3C3A36"
-                android:textSize="24sp"
-                />
-        </LinearLayout>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnNextQuestion"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:layout_width="343dp"
-            android:layout_height="590dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="16dp"
-            android:orientation="vertical">
-
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="118dp"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tvCurrentQuestion"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="0/0"
+                    android:textColor="@color/dark"
+                    android:textSize="18sp" />
+                <TextView
+                    android:id="@+id/tvScore"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Diem: 0"
+                    android:textColor="@color/dark"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvQuestionContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Which tag for\n the biggest header?"
-                    android:textSize="24sp"
-                    android:textColor="#3C3A36"
-                    android:letterSpacing="-0.02"
-                    />
-            </LinearLayout>
-
-            <ImageView
-                android:id="@+id/imgtTestquestion"
-                android:layout_width="match_parent"
-                android:layout_height="191dp"
-                android:layout_marginTop="16dp"
-                android:src="@drawable/test_question" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="206dp"
-                android:layout_marginTop="16dp"
-                android:orientation="vertical">
+                    android:textColor="@color/dark"
+                    android:textSize="24sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/test_option"
-                    android:clipToOutline="true"
-                    android:orientation="horizontal"
-                    android:gravity="left|center_horizontal"
                     >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="A."
-                        android:textSize="16sp"
-                        android:gravity="center"
-                        android:paddingStart="8dp"
-                        android:textColor="#3C3A36"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="Đáp án A"
-                        android:textSize="16sp"
-                        android:gravity="center"
-                        android:textColor="#3C3A36"
-                        />
-                </LinearLayout>
 
+                    <RadioGroup
+                        android:id="@+id/radioGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/test_option"
-                    android:clipToOutline="true"
-                    android:orientation="horizontal"
-                    android:gravity="left|center_horizontal"
-                    android:layout_marginTop="8dp"
-                    >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="B."
-                        android:textSize="16sp"
-                        android:gravity="center"
-                        android:paddingStart="8dp"
-                        android:textColor="#3C3A36"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="Đáp án B"
-                        android:textSize="16sp"
-                        android:gravity="center"
-                        android:textColor="#3C3A36"
-                        />
-                </LinearLayout>
+                        >
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/test_option"
-                    android:clipToOutline="true"
-                    android:orientation="horizontal"
-                    android:gravity="left|center_horizontal"
-                    android:layout_marginTop="8dp"
-                    >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="C."
-                        android:textSize="16sp"
-                        android:gravity="center"
-                        android:paddingStart="8dp"
-                        android:textColor="#3C3A36"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="Đáp án C"
-                        android:textSize="16sp"
-                        android:gravity="center"
-                        android:textColor="#3C3A36"
-                        />
+                        <RadioButton
+                            android:id="@+id/rb1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Dap dan 1"
+                            android:background="@drawable/bg_radio_button_defaute"
+                            android:textColor="@color/dark"
+                            android:layout_marginTop="16dp"
+                            android:buttonTint="@color/primary"
+                            android:textSize="16sp" />
+
+                        <RadioButton
+                            android:id="@+id/rb2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Dap dan 1"
+                            android:background="@drawable/bg_radio_button_defaute"
+                            android:textColor="@color/dark"
+                            android:layout_marginTop="16dp"
+                            android:buttonTint="@color/primary"
+                            android:textSize="16sp" />
+
+                        <RadioButton
+                            android:id="@+id/rb3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_radio_button_defaute"
+                            android:text="Dap dan 1"
+                            android:layout_marginTop="16dp"
+                            android:buttonTint="@color/primary"
+                            android:textColor="@color/dark"
+                            android:textSize="16sp" />
+
+                        <RadioButton
+                            android:id="@+id/rb4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Dap dan 1"
+                            android:layout_marginTop="16dp"
+                            android:buttonTint="@color/primary"
+
+                            android:background="@drawable/bg_radio_button_defaute"
+                            android:textColor="@color/dark"
+                            android:textSize="16sp" />
+                    </RadioGroup>
                 </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
-
-        <Button
-            android:layout_width="309dp"
-            android:layout_height="56dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="11dp"
-            android:layout_marginBottom="20dp"
-            android:text="Continue"
-            android:background="@drawable/bogoc_button"
-
-            />
+        </ScrollView>
 
 
     </LinearLayout>
-</ScrollView>
+
+    <Button
+        android:id="@+id/btnNextQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/my_button"
+        android:text="Continue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -31,6 +31,7 @@ import com.example.course_mobile.R;
 import com.example.course_mobile.activity.ChoiceLessonActivity;
 import com.example.course_mobile.activity.CourseDetailActivity;
 import com.example.course_mobile.activity.LoginActivity;
+import com.example.course_mobile.activity.QuizQuestionActivity;
 import com.example.course_mobile.adapter.QuizAdapter;
 import com.example.course_mobile.data_local.DataLocalManager;
 import com.example.course_mobile.model.quiz.Quiz;
@@ -47,6 +48,7 @@ import retrofit2.Response;
 public class QuizFragment extends Fragment {
     private static final int QUIZ_DATA = 1;
     private static final int QUIZ_401 = 0;
+    public static final String QUIZ_ID = "QUIZ_ID";
     private RecyclerView rcvQuiz;
     private List<Quiz> quizList;
     private QuizAdapter quizAdapter;
@@ -139,7 +141,9 @@ public class QuizFragment extends Fragment {
         bntOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getContext(), QuizQuestionActivity.class);
+                intent.putExtra(QUIZ_ID,quiz.getId());
+                startActivity(intent);
             }
         });
 

@@ -14,6 +14,9 @@
         android:theme="@style/Theme.CourseMobile"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activity.QuizQuestionActivity"
+            android:exported="true" />
+        <activity
             android:name=".activity.LessonCourseActivity"
             android:exported="true" />
         <activity
