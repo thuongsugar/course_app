@@ -44,11 +44,15 @@
         <entry key="..\:/Mobile/course_app/app/src/main/res/layout/saved2.xml" value="0.14635416666666667" />
         <entry key="..\:/Mobile/course_app/app/src/main/res/layout/sigup.xml" value="0.14635416666666667" />
         <entry key="..\:/Mobile/course_app/app/src/main/res/layout/test_question.xml" value="0.14635416666666667" />
+        <entry key="..\:/SourcseAndroid/CourseMobile/app/src/main/res/drawable/bg_button_dialog.xml" value="0.2109375" />
+        <entry key="..\:/SourcseAndroid/CourseMobile/app/src/main/res/drawable/bg_text_dialog.xml" value="0.2109375" />
         <entry key="..\:/SourcseAndroid/CourseMobile/app/src/main/res/drawable/bogoc_button.xml" value="0.20625" />
+        <entry key="..\:/SourcseAndroid/CourseMobile/app/src/main/res/drawable/border_dialog_quiz.xml" value="0.2109375" />
         <entry key="..\:/SourcseAndroid/CourseMobile/app/src/main/res/drawable/border_edit_false.xml" value="0.20625" />
         <entry key="..\:/SourcseAndroid/CourseMobile/app/src/main/res/drawable/border_edit_text.xml" value="0.24010416666666667" />
         <entry key="..\:/SourcseAndroid/CourseMobile/app/src/main/res/drawable/btn_begin_quiz.xml" value="0.26666666666666666" />
         <entry key="..\:/SourcseAndroid/CourseMobile/app/src/main/res/drawable/button.xml" value="0.24010416666666667" />
+        <entry key="..\:/SourcseAndroid/CourseMobile/app/src/main/res/drawable/button_question.xml" value="0.2109375" />
         <entry key="..\:/SourcseAndroid/CourseMobile/app/src/main/res/drawable/my_button.xml" value="0.26666666666666666" />
         <entry key="..\:/SourcseAndroid/CourseMobile/app/src/main/res/layout/abs_layout.xml" value="0.25052083333333336" />
         <entry key="..\:/SourcseAndroid/CourseMobile/app/src/main/res/layout/activity_choice_lesson.xml" value="0.264" />
@@ -62,6 +66,7 @@
         <entry key="..\:/SourcseAndroid/CourseMobile/app/src/main/res/layout/category_layout.xml" value="0.15572916666666667" />
         <entry key="..\:/SourcseAndroid/CourseMobile/app/src/main/res/layout/course_lesson.xml" value="0.4" />
         <entry key="..\:/SourcseAndroid/CourseMobile/app/src/main/res/layout/course_test.xml" value="0.15572916666666667" />
+        <entry key="..\:/SourcseAndroid/CourseMobile/app/src/main/res/layout/dialog_quiz.xml" value="0.264" />
         <entry key="..\:/SourcseAndroid/CourseMobile/app/src/main/res/layout/fragment_course.xml" value="0.4" />
         <entry key="..\:/SourcseAndroid/CourseMobile/app/src/main/res/layout/fragment_lesson.xml" value="0.4" />
         <entry key="..\:/SourcseAndroid/CourseMobile/app/src/main/res/layout/fragment_quiz.xml" value="0.4" />

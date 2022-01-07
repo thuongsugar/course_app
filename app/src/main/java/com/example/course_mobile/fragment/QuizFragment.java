@@ -1,6 +1,9 @@
 package com.example.course_mobile.fragment;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,10 +16,15 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.course_mobile.R;
@@ -89,7 +97,53 @@ public class QuizFragment extends Fragment {
     }
 
     private void addEvents() {
+        quizAdapter.setOnClickQuiz(new QuizAdapter.OnClickQuiz() {
+            @Override
+            public void onClick(Quiz quiz) {
+                openDialogQuiz(quiz);
+            }
+        });
+    }
 
+    private void openDialogQuiz(Quiz quiz) {
+        final Dialog dialog = new Dialog(getContext());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_quiz);
+
+        Window window = dialog.getWindow();
+        if (window == null){
+            return;
+        }
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT,WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        WindowManager.LayoutParams layoutParams = window.getAttributes();
+        layoutParams.gravity = Gravity.CENTER;
+        window.setAttributes(layoutParams);
+        dialog.setCancelable(false);
+
+        TextView tvTitle = dialog.findViewById(R.id.dialogTitle);
+        TextView tvDes = dialog.findViewById(R.id.dialogDes);
+        Button btnCancel = dialog.findViewById(R.id.btnDialogCancel);
+        Button bntOk = dialog.findViewById(R.id.btnDialogOk);
+
+        tvTitle.setText(quiz.getName());
+        tvDes.setText(quiz.getNumberQuestion() +" cau hoi");
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        bntOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        dialog.show();
     }
 
     private void initUI(View v) {
