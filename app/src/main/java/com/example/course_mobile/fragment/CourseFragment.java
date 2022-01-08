@@ -23,11 +23,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.course_mobile.R;
+import com.example.course_mobile.activity.CourseDetailActivity;
 import com.example.course_mobile.activity.SearchActivity;
 import com.example.course_mobile.adapter.CategoryAdapter;
 import com.example.course_mobile.adapter.CourseAdapter;
@@ -61,6 +63,7 @@ public class CourseFragment extends Fragment {
     private SwipeRefreshLayout rfCourse;
     private EditText edtSearch;
     private ProgressBar pgHome;
+    private LinearLayout layoutNotFoundFragmentCourse;
     private String searchContent;
 
     private  Handler handler;
@@ -102,6 +105,9 @@ public class CourseFragment extends Fragment {
                     courseList = (List<Course>) msg.obj;
                     courseAdapter.setDataCourses(courseList);
                     pgHome.setVisibility(View.GONE);
+                    if (courseList.size() == 0){
+                        layoutNotFoundFragmentCourse.setVisibility(View.VISIBLE);
+                    }
 
                 }
                 super.handleMessage(msg);
@@ -145,11 +151,27 @@ public class CourseFragment extends Fragment {
                 return false;
             }
         });
+
+        courseAdapter.onClickCourse(new CourseAdapter.OnClickCourse() {
+            @Override
+            public void onClick(Course courseClicked) {
+                openDetailActivity(courseClicked);
+            }
+        });
+    }
+
+    private void openDetailActivity(Course courseClicked) {
+        Intent intentCourseDetail = new Intent(getContext(), CourseDetailActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(SearchActivity.COURSE_OBJ,courseClicked);
+        intentCourseDetail.putExtras(bundle);
+        startActivity(intentCourseDetail);
     }
 
     @SuppressLint("ResourceAsColor")
     private void initUI(View view) {
-
+        layoutNotFoundFragmentCourse = view.findViewById(R.id.layoutNotFoundFragmentCourse);
+        layoutNotFoundFragmentCourse.setVisibility(View.GONE);
 
         rcvCategory = view.findViewById(R.id.rcvCategory);
         categoryAdapter = new CategoryAdapter();

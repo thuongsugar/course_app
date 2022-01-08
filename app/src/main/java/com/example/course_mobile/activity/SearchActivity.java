@@ -14,6 +14,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -41,6 +42,8 @@ public class SearchActivity extends AppCompatActivity {
 
     private Handler handler;
 
+    private LinearLayout layoutNotFoundFragmentSearch;
+
     private List<Course> courseList;
     private CourseAdapter courseAdapter;
     @Override
@@ -62,7 +65,9 @@ public class SearchActivity extends AppCompatActivity {
                     courseAdapter.setDataCourses(courseList);
                     tvNumberResult.setText(courseList.size()+"");
                     pgBarResult.setVisibility(View.GONE);
-
+                    if(courseList.size() == 0){
+                        layoutNotFoundFragmentSearch.setVisibility(View.VISIBLE);
+                    }
 
                 }
                 super.handleMessage(msg);
@@ -129,6 +134,8 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void initUI() {
+        layoutNotFoundFragmentSearch = findViewById(R.id.layoutNotFoundFragmentSearch);
+        layoutNotFoundFragmentSearch.setVisibility(View.GONE);
         Category categorySelected = (Category) getIntent().getExtras().get(CourseFragment.TAG_CATEGORY);
 
         ActionBar actionBar = getSupportActionBar();

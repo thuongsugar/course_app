@@ -34,7 +34,7 @@ public interface ApiService {
 
     ApiService apiService = new Retrofit.Builder()
 //            .baseUrl("http://10.0.3.2:8000/api/")
-            .baseUrl("https://5db6-2402-800-61b3-9975-2007-2af7-9d7d-f1cf.ngrok.io/api/")
+            .baseUrl("https://37c1-2402-800-61b3-9975-3c08-cc9e-3185-ec0a.ngrok.io/api/")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(ApiService.class);
@@ -63,6 +63,9 @@ public interface ApiService {
 
     @GET("quiz/{pk}")
     Call<List<Question>> getQuestion(@Header("Authorization") String token, @Path("pk") int id);
+
+    @GET("courses/registered")
+    Call<List<Course>> getCourseRegistered(@Header("Authorization") String token);
 
     @FormUrlEncoded
     @POST("user/")

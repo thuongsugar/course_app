@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.course_mobile.R;
@@ -43,6 +44,7 @@ public class LessonFragment extends Fragment {
 
     public static final String LESSON_CHOICE = "LESSON_CHOICE";
 
+    private ProgressBar pgLessonFragment;
     private RecyclerView rcvLesson;
     private LessonAdapter lessonAdapter;
     private List<Lesson> lessonList;
@@ -84,6 +86,9 @@ public class LessonFragment extends Fragment {
     }
 
     private void initUI(View view) {
+        pgLessonFragment = view.findViewById(R.id.pgLessonFragment);
+        pgLessonFragment.setVisibility(View.VISIBLE);
+
         rcvLesson = view.findViewById(R.id.rcvLesson);
         lessonList = new ArrayList<>();
         lessonAdapter = new LessonAdapter();
@@ -113,6 +118,7 @@ public class LessonFragment extends Fragment {
 
                             @Override
                             public void onFailure(Call<List<Lesson>> call, Throwable t) {
+                                pgLessonFragment.setVisibility(View.GONE);
                                 Log.e("loi goi api lesson", t.toString());
                             }
                         });
@@ -142,14 +148,16 @@ public class LessonFragment extends Fragment {
                     case LESSON_DATA:
                         lessonList = (List<Lesson>) msg.obj;
                         lessonAdapter.setLessonList(lessonList);
-
+                        pgLessonFragment.setVisibility(View.GONE);
                         break;
                     case AUTHORIZE_LESSON:
+                        pgLessonFragment.setVisibility(View.GONE);
                         startActivity(new Intent(getContext(), LoginActivity.class));
                         getActivity().finish();
                         break;
                     case ERROR_LESSON:
                         Toast.makeText(getContext(),"Loi server",Toast.LENGTH_SHORT).show();
+                        pgLessonFragment.setVisibility(View.GONE);
                         break;
                     default:
                         break;

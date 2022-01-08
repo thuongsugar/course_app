@@ -151,6 +151,8 @@ public class CourseDetailActivity extends AppCompatActivity {
                         return;
                     }else if(response.code() == 401){
                         handler.sendEmptyMessage(ERROR_REGISTER);
+                    }else if (response.code() >= 500){
+                        Toast.makeText(CourseDetailActivity.this,"loi server",Toast.LENGTH_LONG).show();
                     }
                 }
             }).start();

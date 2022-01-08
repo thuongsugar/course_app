@@ -24,6 +24,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,6 +54,8 @@ public class QuizFragment extends Fragment {
     private List<Quiz> quizList;
     private QuizAdapter quizAdapter;
 
+    private ProgressBar pgQuizFragment;
+
     private int idCourse;
     private String imageCourse;
     private Handler handler;
@@ -77,8 +80,11 @@ public class QuizFragment extends Fragment {
                     case QUIZ_DATA:
                         quizList = (List<Quiz>) msg.obj;
                         quizAdapter.setQuizList(quizList,imageCourse);
+                        pgQuizFragment.setVisibility(View.GONE);
+
                         break;
                     case QUIZ_401:
+                        pgQuizFragment.setVisibility(View.GONE);
                         startActivity(new Intent(getContext(), LoginActivity.class));
                         getActivity().finish();
                         break;
@@ -151,6 +157,8 @@ public class QuizFragment extends Fragment {
     }
 
     private void initUI(View v) {
+        pgQuizFragment = v.findViewById(R.id.pgQuizFragment);
+        pgQuizFragment.setVisibility(View.VISIBLE);
         rcvQuiz = v.findViewById(R.id.rcvQuiz);
         quizAdapter = new QuizAdapter();
         quizList = new ArrayList<>();
@@ -178,7 +186,7 @@ public class QuizFragment extends Fragment {
 
                             @Override
                             public void onFailure(Call<List<Quiz>> call, Throwable t) {
-
+                                pgQuizFragment.setVisibility(View.GONE);
                             }
                         });
             }
@@ -193,6 +201,7 @@ public class QuizFragment extends Fragment {
                 }else if(response.code() == 401){
                     handler.sendEmptyMessage(QUIZ_401);
                 }else {
+                    pgQuizFragment.setVisibility(View.GONE);
                     Toast.makeText(getContext(),"Loi server",Toast.LENGTH_SHORT).show();
                 }
             }

@@ -4,12 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.app.FragmentManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.course_mobile.R;
 import com.example.course_mobile.fragment.CourseFragment;
@@ -23,11 +25,15 @@ public class HomeActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private ActionBar actionBar;
 
-    private static final int FRAGMENT_COURSE = 0;
-    private static final int FRAGMENT_PROFILE = 1;
-    private static final int FRAGMENT_SETTING = 2;
+    private boolean doubleBack = false;
 
-    private int currentFragment =FRAGMENT_COURSE;
+    private final CourseFragment courseFragment = new CourseFragment();
+    private final ProfileFragment profileFragment = new ProfileFragment();
+    private final SettingFragment settingFragment = new SettingFragment();
+
+    private final FragmentManager fragmentManager = getSupportFragmentManager();
+    private Fragment active = courseFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,64 +52,62 @@ public class HomeActivity extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.btnCourse:
                         Log.e("vao","course");
-                        openCourseFragment();
+                        loadFragment(courseFragment,"1",0);
                         return true;
                     case R.id.btnProfile:
                         Log.e("vao","profile");
-
                         actionBar.setTitle("aloo");
-                        openProfileFragment();
-
+                        loadFragment(profileFragment,"2",1);
                         return true;
                     case R.id.btnSetting:
                         Log.e("vao","setting");
-
                         actionBar.setTitle(getResources().getString(R.string.bottom_setting));
-                        openSettingFragment();
+                        loadFragment(settingFragment,"3",2);
                         return true;
                 }
 
                 return false;
             }
         });
+
     }
 
     private void initUI() {
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
-        loadFragment(new CourseFragment());
+
+        loadFragment(courseFragment,"1",0);
+        loadFragment(profileFragment,"2",1);
+        loadFragment(settingFragment,"3",2);
+
+
     }
 
-    private void openCourseFragment(){
-        if(currentFragment != FRAGMENT_COURSE){
-            loadFragment(new CourseFragment());
-            currentFragment = FRAGMENT_COURSE;
+    private void loadFragment(Fragment fragment,String tag,int position) {
+        if (fragment.isAdded()){
+            Log.e("added",fragment.getTag());
+            fragmentManager.beginTransaction().hide(active).show(fragment).commit();
+        }else {
+
+            fragmentManager.beginTransaction().add(R.id.fragment_container,fragment,tag).commit();
         }
-    }
-    private void openProfileFragment(){
-        if(currentFragment != FRAGMENT_PROFILE){
-            loadFragment(new ProfileFragment());
-            currentFragment = FRAGMENT_PROFILE;
-        }
-    }
-    private void openSettingFragment(){
-        if(currentFragment != FRAGMENT_SETTING){
-            loadFragment(new SettingFragment());
-            currentFragment = FRAGMENT_SETTING;
-        }
+        bottomNavigationView.getMenu().getItem(position).setChecked(true);
+        active = fragment;
+        Log.e("active",active.getTag());
     }
 
-    private void loadFragment(Fragment fragment) {
-        // load fragment
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
-        FragmentManager fm = getFragmentManager();
+    @Override
+    public void onBackPressed() {
+        if (active == courseFragment){
+            if (doubleBack){
+                super.onBackPressed();
+            }
+            Toast toast =  Toast.makeText(HomeActivity.this,"Nhấn back thêm 1 lần nữa để thoát",Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER,0,0);
+            toast.show();
 
-        for(int entry = 0; entry<fm.getBackStackEntryCount(); entry++){
-            Log.e("name", "Found fragment: " + fm.getBackStackEntryAt(entry).getId());
+        }else {
+            loadFragment(courseFragment,"1",0);
         }
     }
-
 }

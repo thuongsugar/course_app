@@ -16,10 +16,12 @@ import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -46,6 +48,7 @@ public class QuizQuestionActivity extends AppCompatActivity {
     private RadioGroup radioGroup;
     private RadioButton rb1,rb2,rb3,rb4;
     private Button btnNextQuestion;
+    private ProgressBar pgQuestionQuiz;
 
     private int idQuiz;
     private int dangerColor;
@@ -85,9 +88,12 @@ public class QuizQuestionActivity extends AppCompatActivity {
                     questionList = (List<Question>) msg.obj;
                     totalQuestion = questionList.size();
                     renderQuestion();
+                    pgQuestionQuiz.setVisibility(View.GONE);
                 }
                 else if (msg.what == QUESTION_401){
-
+                    pgQuestionQuiz.setVisibility(View.GONE);
+                    startActivity(new Intent(QuizQuestionActivity.this, LoginActivity.class));
+                    finish();
                 }
                 super.handleMessage(msg);
             }
@@ -122,6 +128,9 @@ public class QuizQuestionActivity extends AppCompatActivity {
     }
 
     private void initUI() {
+        pgQuestionQuiz = findViewById(R.id.pgQuestionQuiz);
+        pgQuestionQuiz.setVisibility(View.VISIBLE);
+
         idQuiz = (int) getIntent().getExtras().get(QuizFragment.QUIZ_ID);
         dangerColor = ContextCompat.getColor(this, R.color.danger);
         successColor = ContextCompat.getColor(this, R.color.success);
@@ -158,7 +167,7 @@ public class QuizQuestionActivity extends AppCompatActivity {
 
                             @Override
                             public void onFailure(Call<List<Question>> call, Throwable t) {
-
+                                Log.e("loi goi api question",t.toString());
                             }
                         });
             }
@@ -173,8 +182,7 @@ public class QuizQuestionActivity extends AppCompatActivity {
                 }else if (response.code() == 401){
                     handler.sendEmptyMessage(QUESTION_401);
                 }else {
-
-
+                    pgQuestionQuiz.setVisibility(View.GONE);
                     Toast.makeText(QuizQuestionActivity.this, "Loi server"
                             , Toast.LENGTH_SHORT).show();
                 }
@@ -290,5 +298,12 @@ public class QuizQuestionActivity extends AppCompatActivity {
         });
 
         dialog.show();
+    }
+
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == android.R.id.home){
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
