@@ -9,7 +9,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
                 >
                 <androidx.cardview.widget.CardView
@@ -28,7 +28,7 @@
                             android:id="@+id/tvTitleChoiceLesson"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="Java co ban"
+                            android:text=""
                             android:textSize="24sp"
                             android:lineHeight="32dp"
                             android:textColor="@color/dark"
@@ -43,7 +43,7 @@
                                 android:id="@+id/tvDesChoiceLesson"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="mo ta khoa hoc"
+                                android:text=""
                                 android:textColor="@color/dark_gray"
                                 android:textSize="16sp"
                                 android:layout_marginTop="8dp"

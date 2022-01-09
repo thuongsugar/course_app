@@ -95,9 +95,9 @@ public class ChoiceLessonActivity extends AppCompatActivity {
             @Override
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
                 if (position == 1){
-                    tab.setText("Quiz");
+                    tab.setText(getResources().getString(R.string.quiz));
                 }else {
-                    tab.setText("Lesson");
+                    tab.setText(getResources().getString(R.string.lesson));
                 }
             }
         }).attach();

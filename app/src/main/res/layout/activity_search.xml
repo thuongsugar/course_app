@@ -34,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Ket qua"
+            android:text="@string/result"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="24sp" />
@@ -45,6 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="24dp"
+        android:paddingBottom="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/linearLayout2" />
@@ -71,7 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:gravity="center_horizontal"
-            android:text="Hien chua co khoa hoc nao"
+            android:text="@string/course_not_found"
             android:textColor="@color/dark"
             android:textSize="18sp"
             android:textStyle="bold" />

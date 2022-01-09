@@ -4,14 +4,14 @@
 
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
     >
     <ProgressBar
         android:id="@+id/pgQuizFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:indeterminateTint="@color/primary"
         />
     <androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -20,5 +20,18 @@
         android:layout_height="match_parent"
         tools:context=".fragment.QuizFragment">
     </androidx.recyclerview.widget.RecyclerView>
-
+    <LinearLayout
+        android:id="@+id/layoutNotQuiz"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/not_quiz"
+            android:textColor="@color/dark"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:padding="8dp"
+            />
+    </LinearLayout>
 </LinearLayout>

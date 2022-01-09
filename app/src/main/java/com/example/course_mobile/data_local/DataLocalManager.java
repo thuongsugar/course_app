@@ -23,16 +23,21 @@ public class DataLocalManager {
         }
         return instance;
     }
-    public static void setFirstInstalled(Boolean value){
+    public static void setFirstInstall(Boolean value){
         DataLocalManager.getInstance().courseSharedPreferences.putBooleValue(FIRST_INSTALLED,value);
     }
-    public static boolean getFirstInstalled(){
+    public static boolean getFirstInstall(){
         return  DataLocalManager.getInstance().courseSharedPreferences.getBooleanValue(FIRST_INSTALLED);
     }
     public static void setUser(User user){
-        Gson gson = new Gson();
-        String userStringJson = gson.toJson(user);
-        DataLocalManager.getInstance().courseSharedPreferences.putStringValue(USER_DATA,userStringJson);
+        if (user == null){
+            DataLocalManager.getInstance().courseSharedPreferences.putStringValue(USER_DATA,"");
+        }else {
+            Gson gson = new Gson();
+            String userStringJson = gson.toJson(user);
+            DataLocalManager.getInstance().courseSharedPreferences.putStringValue(USER_DATA,userStringJson);
+        }
+
     }
     public static User getUser(){
         String jsonUser = DataLocalManager.getInstance().courseSharedPreferences.getStringValue(USER_DATA);

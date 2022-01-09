@@ -39,6 +39,9 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(false);
+        actionBar.setDisplayShowTitleEnabled(false);
+
         initUI();
         addEvent();
     }
@@ -52,17 +55,15 @@ public class HomeActivity extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.btnCourse:
                         Log.e("vao","course");
-                        loadFragment(courseFragment,"1",0);
+                        loadFragment(courseFragment);
                         return true;
                     case R.id.btnProfile:
                         Log.e("vao","profile");
-                        actionBar.setTitle("aloo");
-                        loadFragment(profileFragment,"2",1);
+                        loadFragment(profileFragment);
                         return true;
                     case R.id.btnSetting:
                         Log.e("vao","setting");
-                        actionBar.setTitle(getResources().getString(R.string.bottom_setting));
-                        loadFragment(settingFragment,"3",2);
+                        loadFragment(settingFragment);
                         return true;
                 }
 
@@ -76,24 +77,28 @@ public class HomeActivity extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        loadFragment(courseFragment,"1",0);
-        loadFragment(profileFragment,"2",1);
-        loadFragment(settingFragment,"3",2);
+        fragmentManager.beginTransaction()
+                .add(R.id.fragment_container, settingFragment, "3")
+                .hide(settingFragment)
+                .commit();
+        fragmentManager.beginTransaction()
+                .add(R.id.fragment_container, profileFragment, "2")
+                .hide(profileFragment)
+                .commit();
+
+        fragmentManager.beginTransaction()
+                .add(R.id.fragment_container,courseFragment, "1")
+                .commit();
 
 
     }
 
-    private void loadFragment(Fragment fragment,String tag,int position) {
-        if (fragment.isAdded()){
-            Log.e("added",fragment.getTag());
-            fragmentManager.beginTransaction().hide(active).show(fragment).commit();
-        }else {
+    private void loadFragment(Fragment fragment) {
 
-            fragmentManager.beginTransaction().add(R.id.fragment_container,fragment,tag).commit();
-        }
-        bottomNavigationView.getMenu().getItem(position).setChecked(true);
+
+        fragmentManager.beginTransaction().hide(active).show(fragment).commit();
         active = fragment;
-        Log.e("active",active.getTag());
+
     }
 
     @Override
@@ -101,13 +106,18 @@ public class HomeActivity extends AppCompatActivity {
         if (active == courseFragment){
             if (doubleBack){
                 super.onBackPressed();
+            }else {
+                Toast toast =  Toast.makeText(HomeActivity.this
+                        ,getResources().getString(R.string.exit)
+                        ,Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER,0,0);
+                toast.show();
+                doubleBack = true;
             }
-            Toast toast =  Toast.makeText(HomeActivity.this,"Nhấn back thêm 1 lần nữa để thoát",Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.CENTER,0,0);
-            toast.show();
 
         }else {
-            loadFragment(courseFragment,"1",0);
+            loadFragment(courseFragment);
+            bottomNavigationView.getMenu().getItem(0).setChecked(true);
         }
     }
 }

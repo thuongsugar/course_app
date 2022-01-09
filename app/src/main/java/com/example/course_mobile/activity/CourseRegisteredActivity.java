@@ -50,7 +50,7 @@ public class CourseRegisteredActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeAsUpIndicator(R.drawable.back);
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle("Da dang ky");
+        actionBar.setTitle(getResources().getString(R.string.registered));
 
         initHandle();
         initUI();
@@ -137,7 +137,8 @@ public class CourseRegisteredActivity extends AppCompatActivity {
                     handler.sendEmptyMessage(COURSE_401);
                 }else {
                     pgCourseRegistered.setVisibility(View.GONE);
-                    Toast.makeText(CourseRegisteredActivity.this,"Loi server"
+                    Toast.makeText(CourseRegisteredActivity.this
+                            ,getResources().getString(R.string.error_server)
                             ,Toast.LENGTH_SHORT).show();
                 }
             }

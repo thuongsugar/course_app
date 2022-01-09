@@ -14,12 +14,22 @@ import androidx.fragment.app.Fragment;
 
 import com.example.course_mobile.R;
 import com.example.course_mobile.activity.CourseRegisteredActivity;
+import com.example.course_mobile.activity.LoginActivity;
+import com.example.course_mobile.data_local.DataLocalManager;
+import com.example.course_mobile.model.user.User;
+import com.example.course_mobile.service.ApiService;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class ProfileFragment extends Fragment {
     private ImageView imvAvatar;
     private TextView tvCourseRegistered,tvLogout;
     private View view;
+    private User currentUser;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -49,11 +59,59 @@ public class ProfileFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        tvLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (currentUser.getId() != -1){
+                    callApiLogout();
+
+                }else {
+                    Intent intent = new Intent(getContext(), LoginActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
+    }
+
+    private void callApiLogout() {
+        ApiService.apiService.userLogout(DataLocalManager.getToken())
+                .enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        DataLocalManager.setUser(null);
+                        DataLocalManager.setToken(null);
+                        currentUser = DataLocalManager.getUser();
+                        tvLogout.setText(getResources().getString(R.string.login));
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                    }
+                });
     }
 
     private void initUI() {
+        currentUser = DataLocalManager.getUser();
         tvCourseRegistered = view.findViewById(R.id.tvCourseRegistered);
         tvLogout = view.findViewById(R.id.tvLogout);
         imvAvatar = view.findViewById(R.id.imvAvatar);
+        checkUser();
+    }
+
+    private void checkUser() {
+        if(currentUser.getId() != -1){
+            tvLogout.setText(getResources().getString(R.string.logout));
+        }else {
+            tvLogout.setText(getResources().getString(R.string.login));
+        }
+    }
+
+    @Override
+    public void onResume() {
+        currentUser = DataLocalManager.getUser();
+        checkUser();
+        super.onResume();
     }
 }

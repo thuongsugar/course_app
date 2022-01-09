@@ -28,12 +28,32 @@ public class OnbroadingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_onbroading);
+        getSupportActionBar().hide();
 
         initUI();
+        addEvents();
 
-        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        viewPager.setAdapter(viewPagerAdapter);
-        circleIndicator.setViewPager(viewPager);
+
+
+
+    }
+
+    private void addEvents() {
+        tvSkip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewPager.setCurrentItem(2);
+            }
+        });
+        layoutNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(viewPager.getCurrentItem() < 2){
+                    viewPager.setCurrentItem(viewPager.getCurrentItem()+1);
+                }
+            }
+        });
+
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -42,7 +62,7 @@ public class OnbroadingActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-                if(position == 3){
+                if(position == 2){
                     tvSkip.setVisibility(View.GONE);
                     layoutBottom.setVisibility(View.GONE);
                 }else {
@@ -58,8 +78,8 @@ public class OnbroadingActivity extends AppCompatActivity {
 
             }
         });
-
     }
+
     private void initUI(){
         tvSkip = findViewById(R.id.tv_skip);
         viewPager = findViewById(R.id.view_pager);
@@ -67,19 +87,9 @@ public class OnbroadingActivity extends AppCompatActivity {
         circleIndicator = findViewById(R.id.circleindicator);
         layoutNext = findViewById(R.id.layout_next);
 
-        tvSkip . setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                viewPager.setCurrentItem(3);
-            }
-        });
-        layoutNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(viewPager.getCurrentItem()<3){
-                    viewPager.setCurrentItem(viewPager.getCurrentItem()+1);
-                }
-            }
-        });
+        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        viewPager.setAdapter(viewPagerAdapter);
+        circleIndicator.setViewPager(viewPager);
+
     }
 }

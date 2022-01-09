@@ -49,7 +49,7 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder
                 .into(holder.imvQuiz);
 
         holder.tvName.setText(quiz.getName());
-        holder.tvNumQues.setText(quiz.getNumberQuestion() +"cau");
+        holder.tvNumQues.setText(quiz.getNumberQuestion() +" câu hỏi");
         holder.btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

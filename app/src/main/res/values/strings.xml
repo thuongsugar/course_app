@@ -1,8 +1,66 @@
 <resources>
-    <string name="app_name">Course-Mobile</string>
+    <string name="app_name">A++</string>
     <string name="bottom_profile">Profile</string>
     <string name="bottom_course">Course</string>
     <string name="bottom_setting">Setting</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="info_acc">Thông tin tài khoản</string>
+    <string name="name">Tên</string>
+    <string name="username">Tên người dùng</string>
+    <string name="unregistered">Chưa đăng nhập</string>
+    <string name="email">Địa chỉ email</string>
+    <string name="password">Mật khẩu</string>
+    <string name="password_old">Mật khẩu cũ</string>
+    <string name="password_new">Mật khẩu mới</string>
+    <string name="password_change">Đổi mật khẩu</string>
+    <string name="ready_title">Bạn đã sẵn sàng</string>
+    <string name="ready">Sẵn sàng</string>
+    <string name="cancel">Hủy</string>
+    <string name="change_mail">Thay đổi email</string>
+    <string name="change_pass">Thay đổi mật khẩu</string>
+    <string name="confirm">Xác nhận</string>
+    <string name="leak_data">Thông tin bị thiếu</string>
+    <string name="error_server">Lỗi từ máy chủ</string>
+    <string name="pass_no_duplicate">Mật khẩu không giống nhau</string>
+    <string name="success_change_pass">Thay đổi mật khẩu thành công</string>
+    <string name="user_anonymous">Ẩn danh</string>
+    <string name="hi">Xin chào</string>
+    <string name="login">Đăng nhập</string>
+    <string name="login_success">Đăng nhập thành công</string>
+    <string name="signup">Đăng ký</string>
+    <string name="logout">Đăng xuất</string>
+    <string name="question">câu hỏi</string>
+    <string name="success_register">Đăng ký thành công</string>
+    <string name="error_register">Đăng ký thất bại</string>
+    <string name="registered">Đã đăng ký, học ngay</string>
+    <string name="subscribers">người đăng ký</string>
+    <string name="exit">Nhấn back thêm 1 lần nữa để thoát</string>
+    <string name="data_login_error">Thông tin đăng nhập không chính xác</string>
+    <string name="score">Điểm</string>
+    <string name="choice_answer">Chọn một đáp án</string>
+    <string name="next">Tiếp tục</string>
+    <string name="finish">Kết thúc</string>
+    <string name="user_name_error">Tên người dùng không khoảng trắng</string>
+    <string name="course_unregister">Bạn chưa đăng ký khóa học nào</string>
+    <string name="skip">Bỏ qua</string>
+    <string name="result">Kết quả</string>
+    <string name="course_not_found">Hiện chưa có khóa học nào</string>
+    <string name="course_not_search">Không tìm thấy khóa học</string>
+    <string name="complete">Bạn đã hoàn thành</string>
+    <string name="find_course">Tìm khóa học</string>
+    <string name="category">Danh mục:</string>
+    <string name="course_registered">Khóa học đã đăng ký</string>
+    <string name="start">Bắt đầu</string>
+    <string name="quiz">Kiểm tra</string>
+    <string name="lesson">Bài học</string>
+    <string name="onboard1">Học mọi lúc mọi nơi</string>
+    <string name="onboard2">Tìm một khóa học cho bạn</string>
+    <string name="onboard3">Cải thiện kỹ năng của bạn</string>
+    <string name="onboard1_des">Giáo dục là vũ khí mạnh nhất mà người ta có thể sử dụng để thay đổi cả thế giới.</string>
+    <string name="onboard2_des">Khi bạn thực sự chú ý, mọi thứ đều là giáo viên của bạn.</string>
+    <string name="onboard3_des">Khoản đầu tư vào kiến thức sẽ đem lại lãi suất cao nhất.</string>
+    <string name="not_quiz">Hiện chưa có bài kiểm tra</string>
+
 </resources>

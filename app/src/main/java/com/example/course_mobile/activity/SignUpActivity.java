@@ -74,11 +74,14 @@ public class SignUpActivity extends AppCompatActivity {
                String passWord = edtPass.getText().toString().trim();
 
                if(userName.isEmpty() && email.isEmpty() && passWord.isEmpty()){
-                   toast.makeText(SignUpActivity.this,"Thong tin con thieu",Toast.LENGTH_SHORT).show();
+                   toast.makeText(SignUpActivity.this
+                           ,getResources().getString(R.string.leak_data)
+                           ,Toast.LENGTH_SHORT).show();
                    return;
                }
                if(userName.contains(" ")){
-                   toast.makeText(SignUpActivity.this,"username viet lien",Toast.LENGTH_SHORT).show();
+                   toast.makeText(SignUpActivity.this,getResources().getString(R.string.user_name_error)
+                           ,Toast.LENGTH_SHORT).show();
                    return;
                }
 
@@ -117,7 +120,9 @@ public class SignUpActivity extends AppCompatActivity {
     private void handleResponse(Response<ResponseBody> response,String userName) {
         int status = response.code();
         if(response.isSuccessful()){
-            toast.makeText(this,"Dang ky thanh cong",Toast.LENGTH_SHORT).show();
+            toast.makeText(this,getResources().getString(R.string.success_register
+            ),Toast.LENGTH_SHORT).show();
+
             Intent intent = new Intent(this,LoginActivity.class);
             intent.putExtra(USER_NAME_TAG, userName);
             setResult(RESULT_OK,intent);
@@ -125,7 +130,8 @@ public class SignUpActivity extends AppCompatActivity {
             return;
         }
         else if(status >= 500){
-            toast.makeText(this,"Loi server", Toast.LENGTH_SHORT).show();
+            toast.makeText(this,getResources().getString(R.string.error_server)
+                    , Toast.LENGTH_SHORT).show();
         }
         else {
 

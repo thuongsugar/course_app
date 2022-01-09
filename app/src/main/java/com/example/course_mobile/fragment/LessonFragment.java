@@ -156,7 +156,8 @@ public class LessonFragment extends Fragment {
                         getActivity().finish();
                         break;
                     case ERROR_LESSON:
-                        Toast.makeText(getContext(),"Loi server",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(),getResources().getString(R.string.error_server)
+                                ,Toast.LENGTH_SHORT).show();
                         pgLessonFragment.setVisibility(View.GONE);
                         break;
                     default:

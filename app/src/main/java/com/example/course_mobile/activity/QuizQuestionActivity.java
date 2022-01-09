@@ -142,6 +142,7 @@ public class QuizQuestionActivity extends AppCompatActivity {
         tvCurrentQuestion = findViewById(R.id.tvCurrentQuestion);
         tvQuestionContent = findViewById(R.id.tvQuestionContent);
         tvScore = findViewById(R.id.tvScore);
+        tvScore.setText(getResources().getString(R.string.score)+ " " +score);
 
         radioGroup = findViewById(R.id.radioGroup);
         rb1 = findViewById(R.id.rb1);
@@ -183,7 +184,8 @@ public class QuizQuestionActivity extends AppCompatActivity {
                     handler.sendEmptyMessage(QUESTION_401);
                 }else {
                     pgQuestionQuiz.setVisibility(View.GONE);
-                    Toast.makeText(QuizQuestionActivity.this, "Loi server"
+                    Toast.makeText(QuizQuestionActivity.this
+                            , getResources().getString(R.string.error_server)
                             , Toast.LENGTH_SHORT).show();
                 }
             }
@@ -201,7 +203,8 @@ public class QuizQuestionActivity extends AppCompatActivity {
                         checkAnswer();
                     }else {
                         Toast.makeText(QuizQuestionActivity.this
-                                ,"Chon mot dap an",Toast.LENGTH_LONG).show();
+                                ,getResources().getString(R.string.choice_answer)
+                                ,Toast.LENGTH_LONG).show();
                     }
                 }else {
                     renderQuestion();
@@ -220,7 +223,7 @@ public class QuizQuestionActivity extends AppCompatActivity {
         //neu chon dung
         if(currentQuestion.getAnswer().get(indexSelectedAnswer).isCorrect()){
             score++;
-            tvScore.setText("Diem: "+score);
+            tvScore.setText(getResources().getString(R.string.score)+ " " +score);
         }else {//tim dap an
             for(int i =0; i<currentQuestion.getAnswer().size();i++){
                 if (currentQuestion.getAnswer().get(i).isCorrect()){
@@ -262,9 +265,9 @@ public class QuizQuestionActivity extends AppCompatActivity {
         }
 
         if(counterQuestion < totalQuestion){
-            btnNextQuestion.setText("Next");
+            btnNextQuestion.setText(getResources().getString(R.string.next));
         }else {
-            btnNextQuestion.setText("Finish");
+            btnNextQuestion.setText(getResources().getString(R.string.finish));
         }
     }
     private void openDialogQuiz() {
@@ -287,7 +290,8 @@ public class QuizQuestionActivity extends AppCompatActivity {
         TextView tvTitle = dialog.findViewById(R.id.dialogResultQuiz);
         Button bntComplete = dialog.findViewById(R.id.btnDialogComplete);
 
-        tvTitle.setText(score + "/" +totalQuestion +" cau hoi");
+        tvTitle.setText(score + "/" +totalQuestion +" "+getResources()
+                .getString(R.string.question));
 
 
         bntComplete.setOnClickListener(new View.OnClickListener() {

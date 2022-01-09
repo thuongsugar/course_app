@@ -76,9 +76,9 @@ public class CourseFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        Log.e("goi  lai","actack");
+    public void onResume() {
+        tvUserName.setText(DataLocalManager.getUser().getUserName());
+        super.onResume();
     }
 
     @Override

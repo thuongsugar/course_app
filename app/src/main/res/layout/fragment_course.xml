@@ -24,7 +24,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello,"
+            android:text="@string/hi"
             android:textSize="16sp"
             android:textColor="@color/dark"
             android:lineHeight="26dp"
@@ -48,7 +48,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:background="@drawable/border_edit_text"
-                android:hint="Search course"
+                android:hint="@string/find_course"
                 android:paddingTop="17dp"
                 android:paddingLeft="16dp"
                 android:paddingBottom="17dp"
@@ -86,7 +86,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Category:"
+                android:text="@string/category"
                 android:textSize="14sp"
                 android:layout_marginTop="3dp"
                 android:textColor="@color/dark"
@@ -114,7 +114,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Khong tim thay khoa hoc"
+                android:text="@string/course_not_search"
                 android:gravity="center_horizontal"
                 android:textSize="18sp"
                 android:textColor="@color/dark"

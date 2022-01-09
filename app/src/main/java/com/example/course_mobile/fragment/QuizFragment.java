@@ -24,6 +24,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,6 +51,9 @@ public class QuizFragment extends Fragment {
     private static final int QUIZ_DATA = 1;
     private static final int QUIZ_401 = 0;
     public static final String QUIZ_ID = "QUIZ_ID";
+
+    private LinearLayout layoutNotQuiz;
+
     private RecyclerView rcvQuiz;
     private List<Quiz> quizList;
     private QuizAdapter quizAdapter;
@@ -79,7 +83,13 @@ public class QuizFragment extends Fragment {
                 switch (msg.what){
                     case QUIZ_DATA:
                         quizList = (List<Quiz>) msg.obj;
-                        quizAdapter.setQuizList(quizList,imageCourse);
+                        if (quizList.size() == 0){
+                            layoutNotQuiz.setVisibility(View.VISIBLE);
+                            rcvQuiz.setVisibility(View.GONE);
+                        }else {
+                            rcvQuiz.setVisibility(View.VISIBLE);
+                            quizAdapter.setQuizList(quizList,imageCourse);
+                        }
                         pgQuizFragment.setVisibility(View.GONE);
 
                         break;
@@ -136,7 +146,7 @@ public class QuizFragment extends Fragment {
         Button bntOk = dialog.findViewById(R.id.btnDialogOk);
 
         tvTitle.setText(quiz.getName());
-        tvDes.setText(quiz.getNumberQuestion() +" cau hoi");
+        tvDes.setText(quiz.getNumberQuestion() +" " +getResources().getString(R.string.question));
 
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,6 +167,8 @@ public class QuizFragment extends Fragment {
     }
 
     private void initUI(View v) {
+        layoutNotQuiz = v.findViewById(R.id.layoutNotQuiz);
+        layoutNotQuiz.setVisibility(View.GONE);
         pgQuizFragment = v.findViewById(R.id.pgQuizFragment);
         pgQuizFragment.setVisibility(View.VISIBLE);
         rcvQuiz = v.findViewById(R.id.rcvQuiz);
@@ -202,7 +214,7 @@ public class QuizFragment extends Fragment {
                     handler.sendEmptyMessage(QUIZ_401);
                 }else {
                     pgQuizFragment.setVisibility(View.GONE);
-                    Toast.makeText(getContext(),"Loi server",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),getResources().getString(R.string.error_server),Toast.LENGTH_SHORT).show();
                 }
             }
         }).start();

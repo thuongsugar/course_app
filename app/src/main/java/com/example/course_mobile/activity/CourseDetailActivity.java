@@ -76,12 +76,12 @@ public class CourseDetailActivity extends AppCompatActivity {
                         handleButton();
                         break;
                     case SUCCESS_REGISTER:
-
-                        Toast.makeText(CourseDetailActivity.this,"dangki tahnh cong", Toast.LENGTH_LONG).show();
+                        Toast.makeText(CourseDetailActivity.this,getResources().getString(R.string.success_register), Toast.LENGTH_LONG).show();
+                        openChoiceLessonActivity();
                         break;
 
                     case ERROR_REGISTER:
-                        Toast.makeText(CourseDetailActivity.this,"dang ki that bai",Toast.LENGTH_LONG).show();
+                        Toast.makeText(CourseDetailActivity.this,getResources().getString(R.string.error_register),Toast.LENGTH_LONG).show();
                         startActivity(new Intent(CourseDetailActivity.this,LoginActivity.class));
                         finish();
                         break;
@@ -99,9 +99,9 @@ public class CourseDetailActivity extends AppCompatActivity {
     private void handleButton() {
         pgBarDetail.setVisibility(View.GONE);
         if (isRegistered){
-            btnDetail.setText("Da dang ki, hoc ngay");
+            btnDetail.setText(getResources().getString(R.string.registered));
         }else {
-            btnDetail.setText("Dang ki ngay");
+            btnDetail.setText(getResources().getString(R.string.signup));
         }
         btnDetail.setVisibility(View.VISIBLE);
 
@@ -119,10 +119,7 @@ public class CourseDetailActivity extends AppCompatActivity {
     private void handleButtonClicked() {
         //kiem tra dang ki neu chua dki thi goi api dki,roi thi sang trang hoc
         if (isRegistered){
-            Intent intentChoiceLesson = new Intent(CourseDetailActivity.this,ChoiceLessonActivity.class);
-            intentChoiceLesson.putExtra(COURSE_DATA, courseSelected);
-            startActivity(intentChoiceLesson);
-            finish();
+            openChoiceLessonActivity();
         }
         else {
             new Thread(new Runnable() {
@@ -152,12 +149,20 @@ public class CourseDetailActivity extends AppCompatActivity {
                     }else if(response.code() == 401){
                         handler.sendEmptyMessage(ERROR_REGISTER);
                     }else if (response.code() >= 500){
-                        Toast.makeText(CourseDetailActivity.this,"loi server",Toast.LENGTH_LONG).show();
+                        Toast.makeText(CourseDetailActivity.this,getResources().getString(R.string.error_server),Toast.LENGTH_LONG).show();
                     }
                 }
             }).start();
         }
     }
+
+    private void openChoiceLessonActivity() {
+        Intent intentChoiceLesson = new Intent(CourseDetailActivity.this,ChoiceLessonActivity.class);
+        intentChoiceLesson.putExtra(COURSE_DATA, courseSelected);
+        startActivity(intentChoiceLesson);
+        finish();
+    }
+
 
     private void initUI() {
         pgBarDetail = findViewById(R.id.pgBarDetail);
@@ -231,7 +236,8 @@ public class CourseDetailActivity extends AppCompatActivity {
                 .centerCrop()
                 .placeholder(R.drawable.course_defaut)
                 .into(imvDetail);
-        tvNumRegDetail.setText(courseSelected.getRegisterNumber() +"nguoi dang ki");
+        tvNumRegDetail.setText(courseSelected.getRegisterNumber() +" "
+                +getResources().getString(R.string.subscribers));
         tvTitle.setText(courseSelected.getSubject());
         tvDes.setText(courseSelected.getDes());
 

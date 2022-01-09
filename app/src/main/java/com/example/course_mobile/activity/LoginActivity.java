@@ -104,7 +104,9 @@ public class LoginActivity extends AppCompatActivity {
                     cancelDanger();
                     return;
                 }else {
-                    toast.makeText(LoginActivity.this, "Thong tin van con thieu",Toast.LENGTH_SHORT).show();
+                    toast.makeText(LoginActivity.this
+                            , getResources().getString(R.string.leak_data)
+                            ,Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -134,7 +136,9 @@ public class LoginActivity extends AppCompatActivity {
             }
             private void handleLoginResponse(Response<User> response) {
                 if(response.isSuccessful()){
-                    toast.makeText(LoginActivity.this,"Dang nhap thanh cong",Toast.LENGTH_SHORT).show();
+                    toast.makeText(LoginActivity.this
+                            ,getResources().getString(R.string.login_success)
+                            ,Toast.LENGTH_SHORT).show();
                     User user = response.body();
                     DataLocalManager.setUser(user);
                     DataLocalManager.setToken(user.getToken());
@@ -145,10 +149,14 @@ public class LoginActivity extends AppCompatActivity {
 
                 }
                 else if(response.code() >= 500){
-                    toast.makeText(LoginActivity.this, "Loi server",Toast.LENGTH_SHORT).show();
+                    toast.makeText(LoginActivity.this
+                            , getResources().getString(R.string.error_server)
+                            ,Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    toast.makeText(LoginActivity.this, "Thong tin dang nhap khong chinh xac",Toast.LENGTH_SHORT).show();
+                    toast.makeText(LoginActivity.this
+                            , getResources().getString(R.string.data_login_error)
+                            ,Toast.LENGTH_SHORT).show();
                     dangerEditText();
                 }
             }

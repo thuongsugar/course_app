@@ -21,15 +21,13 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 0:
-                return new OnboardingFrament1();
-            case 1:
                 return new OnboardingFrament2();
-            case 2:
+            case 1:
                 return new OnboardingFrament3();
-            case 3:
+            case 2:
                 return new OnboardingFrament4();
             default:
-                return new OnboardingFrament1();
+                return new OnboardingFrament2();
 
         }
 
@@ -38,6 +36,6 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 4;
+        return 3;
     }
 }

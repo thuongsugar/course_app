@@ -47,7 +47,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                 .centerCrop()
                 .placeholder(R.drawable.course_defaut)
                 .into(holder.imvCourse);
-        holder.tvRegisterNumber.setText(course.getRegisterNumber()+" nguoi dang ky");
+        holder.tvRegisterNumber.setText(course.getRegisterNumber()+" " +"người đăng ký");
         holder.tvTitleCourse.setText(course.getSubject());
         holder.tvDesCourse.setText(course.getDes());
 

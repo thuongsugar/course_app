@@ -22,6 +22,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -34,7 +35,7 @@ public interface ApiService {
 
     ApiService apiService = new Retrofit.Builder()
 //            .baseUrl("http://10.0.3.2:8000/api/")
-            .baseUrl("https://37c1-2402-800-61b3-9975-3c08-cc9e-3185-ec0a.ngrok.io/api/")
+            .baseUrl("https://c35f-2402-800-61b3-9975-3c08-cc9e-3185-ec0a.ngrok.io/api/")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(ApiService.class);
@@ -68,6 +69,20 @@ public interface ApiService {
     Call<List<Course>> getCourseRegistered(@Header("Authorization") String token);
 
     @FormUrlEncoded
+    @PATCH("edit/{pk}/")
+    Call<User> updateUserInfo(@Header("Authorization") String token,@Path("pk") int idUser,
+                              @Field("email") String emailUSer);
+
+    @FormUrlEncoded
+    @PATCH("change-password/{pk}/")
+    Call<ResponseBody> updateUserPassword(@Header("Authorization") String token,
+                                          @Path("pk") int id,
+                                          @Field("password") String pass,
+                                          @Field("password2") String pass2,
+                                          @Field("old_password") String oldPass);
+
+
+    @FormUrlEncoded
     @POST("user/")
     Call<ResponseBody> userRegister(@Field("username") String userName
             , @Field("email") String email
@@ -76,5 +91,8 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("login/")
     Call<User> user(@Field("username") String userName, @Field("password") String passWord);
+
+    @GET("user/logout/")
+    Call<ResponseBody> userLogout(@Header("Authorization") String token);
 }
 
