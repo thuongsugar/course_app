@@ -56,7 +56,9 @@ public class CourseDetailActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeAsUpIndicator(R.drawable.back);
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle("UI Advance");
+
+        actionBar.setDisplayShowTitleEnabled(false);
+
 
         initHandle();
         initUI();

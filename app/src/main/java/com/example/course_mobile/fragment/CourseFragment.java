@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -59,6 +60,7 @@ public class CourseFragment extends Fragment {
     private List<Category> categoryList;
     private CategoryAdapter categoryAdapter;
 
+    private ImageView imvSearchCourse;
     private TextView tvUserName;
     private SwipeRefreshLayout rfCourse;
     private EditText edtSearch;
@@ -105,9 +107,11 @@ public class CourseFragment extends Fragment {
                     courseList = (List<Course>) msg.obj;
                     courseAdapter.setDataCourses(courseList);
                     pgHome.setVisibility(View.GONE);
+                    layoutNotFoundFragmentCourse.setVisibility(View.GONE);
                     if (courseList.size() == 0){
                         layoutNotFoundFragmentCourse.setVisibility(View.VISIBLE);
                     }
+
 
                 }
                 super.handleMessage(msg);
@@ -152,6 +156,17 @@ public class CourseFragment extends Fragment {
             }
         });
 
+        imvSearchCourse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchContent = edtSearch.getText().toString().trim();
+                InputMethodManager imm = (InputMethodManager) getContext()
+                        .getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(edtSearch.getWindowToken(), 0);
+                callApiCourse(searchContent);
+            }
+        });
+
         courseAdapter.onClickCourse(new CourseAdapter.OnClickCourse() {
             @Override
             public void onClick(Course courseClicked) {
@@ -172,6 +187,8 @@ public class CourseFragment extends Fragment {
     private void initUI(View view) {
         layoutNotFoundFragmentCourse = view.findViewById(R.id.layoutNotFoundFragmentCourse);
         layoutNotFoundFragmentCourse.setVisibility(View.GONE);
+
+        imvSearchCourse = view.findViewById(R.id.imvSearchCourse);
 
         rcvCategory = view.findViewById(R.id.rcvCategory);
         categoryAdapter = new CategoryAdapter();

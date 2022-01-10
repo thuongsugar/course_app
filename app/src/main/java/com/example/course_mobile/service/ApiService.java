@@ -35,7 +35,7 @@ public interface ApiService {
 
     ApiService apiService = new Retrofit.Builder()
 //            .baseUrl("http://10.0.3.2:8000/api/")
-            .baseUrl("https://c35f-2402-800-61b3-9975-3c08-cc9e-3185-ec0a.ngrok.io/api/")
+            .baseUrl("https://db5e-2402-800-61b3-9975-d459-bc5b-5adb-3304.ngrok.io/api/")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(ApiService.class);

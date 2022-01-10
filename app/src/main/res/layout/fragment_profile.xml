@@ -26,6 +26,7 @@
             android:layout_width="172dp"
             android:layout_height="172dp"
             android:scaleType="centerCrop"
+            android:background="@color/gray"
             android:src="@drawable/saved1" />
     </com.google.android.material.card.MaterialCardView>
 
